@@ -12,7 +12,6 @@ Tested up to: 3.7.1
 Version: 1.0.0
 License: GPLv2
 Stable tag: trunk
-Author URI: http://www.zm-tech.net/wp-plugins/html-social-share-buttons/
 
  
 == Description ==
