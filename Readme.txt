@@ -19,7 +19,7 @@ Stable tag: trunk
 Html CSS Social share buttons widget Plugin WordPress.
 It show lite/simple share button only with html css. It’s does not using any JavaScript whats another do. It’s load only extra 10-11 KB total on your site. There are top 5 share  button in this plugin. It’s use only one image instead of 5. So only one extra HTTP request will occur.
 
-For additional item please ask on  <a href="http://www.zm-tech.net/simple-html-social-share-buttons/">Http://www.zm-tech.net/Html shcial share button</a>.
+For additional item please ask on  <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">Http://www.zm-tech.net/Html shcial share button</a>.
 
 === Html Social share buttons: FEATURE ===
 
@@ -33,7 +33,7 @@ For additional item please ask on  <a href="http://www.zm-tech.net/simple-html-s
 
 5. Bookmark with Google Bookmark.
 
-For additional item please ask on  <a href="http://www.zm-tech.net/simple-html-social-share-buttons/">Http://www.zm-tech.net/Html shcial share button</a>.
+For additional item please ask on  <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">Http://www.zm-tech.net/Html shcial share button</a>.
  
 
 == Installation ==
@@ -50,17 +50,17 @@ For additional item please ask on  <a href="http://www.zm-tech.net/simple-html-s
 
 6. That’s all. Enjoy this widget.
 
-If you have any question about installation you may visit  <a href="http://www.zm-tech.net/simple-html-social-share-buttons/">Html shcial share button</a>.
+If you have any question about installation you may visit  <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">Html shcial share button</a>.
 
 == Frequently Asked Questions ==
 No faq.
-For any question please visite <a href="http://www.zm-tech.net/simple-html-social-share-buttons/">Html shcial share button</a>.
+For any question please visite <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">Html shcial share button</a>.
 
 == Changelog ==
 1.0.0 first version.
 
 == Upgrade Notice ==
-To uptodate please visit <a href="http://www.zm-tech.net/simple-html-social-share-buttons/">Html shcial share button</a>. A new version can be publish on site before wordpress.
+To uptodate please visit <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">Html shcial share button</a>. A new version can be publish on site before wordpress.
 
 == Screenshots == 
 1. http://www.zm-tech.net/wp-content/plugins/Html%20Social%20share%20buttons/share.png
