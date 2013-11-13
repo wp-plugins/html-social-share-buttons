@@ -3,7 +3,7 @@ Html Social share buttons
 
 === Html Social share buttons: ABOUT ===
 
-Contributors: www.zm-tech.net
+Contributors: alimuzzamanalim
 Author: Md. Alimuzzaman Alim
 Donate link: none
 Tags: Social,  share, button, image, widget, icon, zm-tech.
