@@ -12,12 +12,13 @@ Tested up to: 3.7.1
 Version: 1.0.0
 License: GPLv2
 Stable tag: trunk
+Author URI: http://www.zm-tech.net/wp-plugins/html-social-share-buttons/
 
  
 == Description ==
 
 Html CSS Social share buttons widget Plugin WordPress.
-It show lite/simple share button only with html css. It’s does not using any JavaScript whats another do. It’s load only extra 10-11 KB total on your site. There are top 5 share  button in this plugin. It’s use only one image instead of 5. So only one extra HTTP request will occur.
+It show lite/simple share button only with html css. It's does not using any JavaScript whats another do. It's load only extra 10-11 KB total on your site. There are top 5 share  button in this plugin. It's use only one image instead of 5. So only one extra HTTP request will occur.
 
 For additional item please ask on  <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">Http://www.zm-tech.net/Html shcial share button</a>.
 
@@ -48,7 +49,7 @@ For additional item please ask on  <a href="http://www.zm-tech.net/wp-plugins/ht
 
 5. Then drag and drop this widget to your sidebar or header banner or footer.
 
-6. That’s all. Enjoy this widget.
+6. That's all. Enjoy this widget.
 
 If you have any question about installation you may visit  <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">Html shcial share button</a>.
 
