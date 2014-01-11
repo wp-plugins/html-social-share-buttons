@@ -11,7 +11,7 @@ Requires at least: 3.0.0
 Tested up to: 3.7.1
 Version: 1.0.0
 License: GPLv2
-Stable tag: trunk
+Stable tag: 1.0.1
 
  
 == Description ==
