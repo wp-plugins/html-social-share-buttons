@@ -21,7 +21,7 @@ It show lite/simple share button only with html css. It's does not using any Jav
 
 For additional item please ask on  <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">http://www.zm-tech.net/wp-plugins/html-social-share-buttons/</a>.
 
-=== Html Social share buttons: FEATURE ===
+Html Social share buttons: FEATURE
 
 1. Share with Facebook.
 
