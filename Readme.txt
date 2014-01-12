@@ -34,7 +34,9 @@ For additional item please ask on  <a href="http://www.zm-tech.net/wp-plugins/ht
 5. Bookmark with Google Bookmark.
 
 For additional item please ask on  <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">http://www.zm-tech.net/wp-plugins/html-social-share-buttons/</a>.
- 
+
+If you need any custom featur or custom plugin please mail me at &#97;&#108;&#105;&#109;&#117;&#122;&#122;&#97;&#109;&#97;&#110;&#97;&#108;&#105;&#109;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;
+
 
 == Installation ==
 
