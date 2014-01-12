@@ -6,7 +6,7 @@ Html Social share buttons
 Contributors: alimuzzamanalim
 Author: Md. Alimuzzaman Alim
 Donate link: none
-Tags: Social,  share, button, image, widget, icon, zm-tech.
+Tags: Social-share, Social-share-button, Social, share, button, image, widget, icon, zm-tech.
 Requires at least: 3.0.0
 Tested up to: 3.8
 Version: 1.0.1
@@ -21,7 +21,7 @@ It show lite/simple share button only with html css. It's does not using any Jav
 
 For additional item please ask on  <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">http://www.zm-tech.net/wp-plugins/html-social-share-buttons/</a>.
 
-Html Social share buttons: FEATURE
+FEATURE::
 
 1. Share with Facebook.
 
