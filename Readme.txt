@@ -6,9 +6,9 @@ Html Social share buttons
 Contributors: alimuzzamanalim
 Author: Md. Alimuzzaman Alim
 Donate link: none
-Tags: Social,  share, button, image, widget, icon, zm-tech.
+Tags: Social-share, Social-share-button, Social, share, button, image, widget, icon, zm-tech.
 Requires at least: 3.0.0
-Tested up to: 3.7.1
+Tested up to: 3.8
 Version: 1.0.0
 License: GPLv2
 Stable tag: 1.0.1
@@ -21,7 +21,7 @@ It show lite/simple share button only with html css. It's does not using any Jav
 
 For additional item please ask on  <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">http://www.zm-tech.net/wp-plugins/html-social-share-buttons/</a>.
 
-=== Html Social share buttons: FEATURE ===
+Html Social share buttons: FEATURE
 
 1. Share with Facebook.
 
@@ -34,21 +34,17 @@ For additional item please ask on  <a href="http://www.zm-tech.net/wp-plugins/ht
 5. Bookmark with Google Bookmark.
 
 For additional item please ask on  <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">http://www.zm-tech.net/wp-plugins/html-social-share-buttons/</a>.
- 
+
+If you need any custom featur or custom plugin please mail me at &#97;&#108;&#105;&#109;&#117;&#122;&#122;&#97;&#109;&#97;&#110;&#97;&#108;&#105;&#109;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;
+
 
 == Installation ==
 
 1.This is a plugin widget so at first activate the plugin.
 
-2. You will find Html Social share button in the plugin list.
+2. Then drag and drop this widget to your sidebar or header banner or footer.
 
-3. Next go to Appearance >> Widgets.
-
-4. Then you will find a widget called Html Social share button.
-
-5. Then drag and drop this widget to your sidebar or header banner or footer.
-
-6. That's all. Enjoy this widget.
+3. That's all. Enjoy this widget.
 
 If you have any question about installation you may visit  <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">Html shcial share button</a>.
 
@@ -57,7 +53,8 @@ No faq.
 For any question please visite <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">Html shcial share button</a>.
 
 == Changelog ==
-1.0.0 first version.
+1.0.0 First version.
+1.0.1 Fix some bugs.
 
 == Upgrade Notice ==
 To uptodate please visit <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">Html shcial share button</a>. A new version can be publish on site before wordpress.
