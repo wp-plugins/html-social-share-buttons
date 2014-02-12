@@ -86,7 +86,7 @@ function zm_sh_in_loop(){
 elseif (is_tag())  
 	$zm_sh_title=single_tag_title("",false)." Archive";
 elseif (is_search()) 
-	$zm_sh_title="Search Results for : ".the_search_query("",false);
+	$zm_sh_title="Search Results for : ".esc_attr( apply_filters( 'the_search_query', get_search_query( false ) ));
 elseif (is_author()) 
 	$zm_sh_title="Author Archive";
 elseif (is_day()) 	
