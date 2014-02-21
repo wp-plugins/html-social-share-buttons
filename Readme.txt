@@ -6,12 +6,12 @@ Html Social share buttons
 Contributors: alimuzzamanalim
 Author: Md. Alimuzzaman Alim
 Donate link: none
-Tags: Social-share, Social-share-button, Social, share, button, image, widget, icon, zm-tech.
+Tags: Social-share, Social-share-button, Social share button, Social, share, button, image, widget, icon, zm-tech.
 Requires at least: 3.0.0
 Tested up to: 3.8.1
-Version: 1.0.2
+Version: 1.0.3
 License: GPLv2
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 
  
 == Description ==
@@ -19,8 +19,9 @@ Stable tag: 1.0.2
 Html CSS Social share buttons widget Plugin WordPress.
 It show lite/simple share button only with html css. It's does not using any JavaScript whats another do. It's load only extra 10-11 KB total on your site. There are top 5 share  button in this plugin. It's use only one image instead of 5. So only one extra HTTP request will occur.
 
+For additional item please ask on  <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">http://www.zm-tech.net/wp-plugins/html-social-share-buttons/</a>.
 
-Html Social share buttons: FEATURE
+FEATURE::
 
 1. Share with Facebook.
 
@@ -52,7 +53,6 @@ For any question please visite <a href="http://www.zm-tech.net/wp-plugins/html-s
 == Changelog ==
 1.0.0 First version.
 1.0.1 Fix some bugs.
-1.0.2 
 
 == Upgrade Notice ==
 To uptodate please visit <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">Html shcial share button</a>. A new version can be publish on site before wordpress.
