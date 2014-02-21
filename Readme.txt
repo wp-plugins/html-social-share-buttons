@@ -14,7 +14,9 @@ It's not using any javascript whats anothers do.
 It's load only extra 10-11 kb.
  
 == Description ==
-New feature added.
+New feature:
+You will be able to display share button horizontally on the left side.
+
 Html CSS Social share buttons widget Plugin WordPress.
 It show lite/simple share button only with html css.
 It's does not using any JavaScript whats another do.
