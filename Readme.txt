@@ -9,7 +9,7 @@ Donate link: none
 Tags: Social-share, Social-share-button, Social share button, Social, share, button, image, widget, icon, zm-tech.
 Requires at least: 3.0.0
 Tested up to: 3.9
-Version: 1.0.5
+Version: 1.0.1
 License: GPLv2
 Stable tag: 1.0.5
 
