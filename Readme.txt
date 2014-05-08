@@ -15,7 +15,7 @@ It's load only extra 10-11 kb.
  
 == Description ==
 New feature:
-You will be able to display share button horizontally on the left side.
+You will be able to display share button horizontally on the left or right side.
 
 Html CSS Social share buttons widget Plugin WordPress.
 It show lite/simple share button only with html css.
