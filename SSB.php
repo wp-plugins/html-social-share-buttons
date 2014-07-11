@@ -4,7 +4,7 @@ Plugin Name: Html Social share buttons
 Plugin URI: http://wordpress.org/plugins/html-social-share-buttons/
 Description: Html share button. It show lite share button only with html. It's not using any javascript whats anothers do. It's load only extra 10-11 kb total on your site.
 Author: Alimuzzaman Alim
-Version: 1.0.7
+Version: 1.0.8
 Author URI: http://www.zm-tech.net
 */
 global $zm_sh;
@@ -233,7 +233,7 @@ class zm_shbtn_class{
 		?>
         <div class="wrap">
             <h2>Html Social Share button</h2>
-            <form method="post" action="../1.0.6/options.php"> 
+            <form method="post" action="options.php"> 
             <?php 
 			settings_fields( 'zm_shbt_opt' );
 			do_settings_sections("zm_shbt_opt");?>
