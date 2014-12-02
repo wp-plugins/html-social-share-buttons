@@ -7,8 +7,176 @@ Author: Alimuzzaman Alim
 Version: 1.0.8
 Author URI: http://www.zm-tech.net
 */
+
+
 global $zm_sh;
-$zm_sh=new zm_shbtn_class;
+$zm_sh=new zm_social_share;
+class zm_social_share{
+	
+	public $default_iconset = "default";
+	public $iconset;
+	public $iconset_url = "";
+	
+	private $cmnstyled;
+	
+	function __construct($iconset){
+		$this->iconset = $iconset;
+		if(!file_exists("iconset/" . $iconset))
+			$this->iconset = $default_iconset;
+		
+		$this->iconset_url = plugins_url( 'iconset/' . $this->iconset, __FILE__ ) ;
+		
+		add_action('wp_print_styles',  array($this,'zm_sh_style_lside')); 
+		add_action('wp_print_footer_scripts',  array($this,'zm_footer_script'));
+		
+		
+	}
+	
+	
+	function zm_footer_script(){
+		$this->zm_sh_btn();
+	}
+	
+	
+	function zm_sh_btn($id="zmshbt"){
+		$options=get_option("zm_shbt_fld");
+		
+		$permalink = curentPageURL();
+		global $zm_sh_title,$imageurl;
+		?>
+<div id="<?php echo $id?>" class="zmshbt">
+
+    <a href="http://www.facebook.com/sharer.php?u=<?php echo $permalink; ?>&amp;t=<?php echo $zm_sh_title; ?>" target="_blank" class="facebook" title="Share This on Facebook"></a>
+    
+
+    <a href="http://twitter.com/share?url=<?php echo $permalink; ?>&amp;text=<?php echo $zm_sh_title; ?>" target="_blank" alt="Tweet This!" title="Tweet This!" class="twitter" ></a>
+
+    <a href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo $permalink; ?>&amp;title=<?php echo $zm_sh_title; ?>" target="_blank" title="Share This on LinkedIn" class="linkedin" ></a>
+    
+    
+    <a href="https://plus.google.com/share?url=<?php echo $permalink; ?>" target="_blank" title="Post it on Google+" class="googlepluse" ></a>
+
+
+    <a href="http://www.google.com/bookmarks/mark?op=edit&bkmk=<?php echo $permalink; ?>&amp;title=<?php echo $zm_sh_title; ?>&annotation=<?php bloginfo('description'); ?>" target="_blank" title="Add to Google bookmark" class="bookmark" ></a>
+
+
+    <a href="mailto:?subject=I wanted you to see this site&amp;body=This is about <?php echo $zm_sh_title; ?> <?php echo $permalink; ?> " title="Share by Email" target="_blank" class="mail"></a>
+
+
+    <a target="blank" href="http://pinterest.com/pin/create/button/?url=<?php echo $permalink ?>&amp;media=<?php echo $imageurl ?>&amp;description=<?php echo $zm_sh_title; ?>" title="Pin This Post" class="pinterest"></a>
+
+
+</div>
+<?php 
+	}
+	
+	function zm_sh_style_cmn() {	
+		$iconset_url = $this->iconset_url;
+		if(!$this->cmnstyled){
+?>
+<style>
+.facebook{
+	background-image: url("<?php echo $iconset_url;?>/facebook.png");
+}
+.twitter{
+	background-image: url("<?php echo $iconset_url;?>/twitter.png");
+}
+.linkedin{
+	background-image: url("<?php echo $iconset_url;?>/linkedin.png");
+}
+.googlepluse{
+	background-image: url("<?php echo $iconset_url;?>/google.png");
+}
+.bookmark{
+	background-image: url("<?php echo $iconset_url;?>/rss.png");
+}
+.pinterest{
+	background-image: url("<?php echo $iconset_url;?>/pinterest.png");
+}
+.mail{
+	background-image: url("<?php echo $iconset_url;?>/mail.png");
+}
+
+.zmshbt{
+	z-index:9999;
+	-moz-box-shadow:0 0 10px 7px rgba(205, 65, 224, 0.42) inset, 0 0 4px 3px rgba(242, 181, 245, 1);
+	-webkit-box-shadow:0 0 10px 7px rgba(205, 65, 224, 0.42) inset, 0 0 4px 3px rgba(242, 181, 245, 1);
+	box-shadow:0 0 10px 7px rgba(205, 65, 224, 0.42) inset, 0 0 4px 3px rgba(242, 181, 245, 1);
+}
+.zmshbt a {
+	-moz-transition: all .25s linear;
+	-webkit-transition: all .25s linear;
+	transition: all .25s linear;
+	width: 30px;
+	height: 30px;
+	margin: 10px
+}
+.zmshbt a:hover {
+	-moz-transform: scale(1.5);
+	-ms-transform: scale(1.5);
+	-o-transform: scale(1.5);
+	-webkit-transform: scale(1.5);
+	transform: scale(1.5)
+}
+.zmshbt a:active {
+	-moz-transform: scale(1.3);
+	-ms-transform: scale(1.3);
+	-o-transform: scale(1.3);
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3)
+}
+</style>
+<?php
+		}
+		$this->cmnstyled=true;
+	}
+	
+	function zm_sh_style_lside() {
+		$this->zm_sh_style_cmn();
+		$options=get_option("zm_shbt_fld");
+?>
+<style>
+#zmshbt {
+	position: fixed;
+	left: -25px;
+	top: 30%;
+	background-color: rgba(223, 153, 226, 0.36);
+	-moz-transition: all .25s linear .5s;
+	-webkit-transition: all .25s linear .5s;
+	transition: all .25s linear .5s;
+}
+#zmshbt:hover {
+	left: 0;
+}
+#zmshbt a {
+	display: block;
+}
+#zmshbt:hover a{
+	margin-right:10px
+}
+</style>
+<?php
+	}
+	
+	
+	function curentPageURL() {
+		$pageURL = 'http';
+		if(isset($_SERVER["HTTPS"])) if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+			$pageURL .= "://";
+		if ($_SERVER["SERVER_PORT"] != "80") {
+			$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+		} else {
+			$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+		}
+		return $pageURL;
+	}
+}
+
+
+
+
+
+/*
 
 
 class zm_shbtn_class{
@@ -134,68 +302,7 @@ class zm_shbtn_class{
 <?php
 	}
 	
-	function zm_sh_style_cmn() {	
-		$purl = plugin_dir_url( __FILE__ );
-		if(!$this->cmnstyled){
-?>
-<style>
-.facebook{
-	background-position:0px 0px;
-}
-.twitter{
-	background-position:-30px 0px
-}
-.linkedin{
-	background-position:-60px 0px;
-}
-.googlepluse{
-	background-position:-90px 0px;
-}
-.bookmark{
-	background-position:-120px 0px;
-}
-.pinterest{
-	background-position:-150px 0px;
-}
-.mail{
-	background-position:-180px 0px;
-}
 
-.zmshbt{
-	z-index:9999;
-	-moz-box-shadow:0 0 10px 7px rgba(205, 65, 224, 0.42) inset, 0 0 4px 3px rgba(242, 181, 245, 1);
-	-webkit-box-shadow:0 0 10px 7px rgba(205, 65, 224, 0.42) inset, 0 0 4px 3px rgba(242, 181, 245, 1);
-	box-shadow:0 0 10px 7px rgba(205, 65, 224, 0.42) inset, 0 0 4px 3px rgba(242, 181, 245, 1);
-}
-.zmshbt a {
-	-moz-transition: all .25s linear;
-	-webkit-transition: all .25s linear;
-	transition: all .25s linear;
-	width: 30px;
-	height: 30px;
-	background-image: url("<?php echo $purl;?>share.png");
-	margin: 10px
-}
-.zmshbt a:hover {
-	-moz-transform: scale(1.5);
-	-ms-transform: scale(1.5);
-	-o-transform: scale(1.5);
-	-webkit-transform: scale(1.5);
-	transform: scale(1.5)
-}
-.zmshbt a:active {
-	-moz-transform: scale(1.3);
-	-ms-transform: scale(1.3);
-	-o-transform: scale(1.3);
-	-webkit-transform: scale(1.3);
-	transform: scale(1.3)
-}
-</style>
-<?php
-		}
-		$this->cmnstyled=true;
-	}
-	
 	function zm_sh_in_loop(){
 		global $zm_sh_permalink;
 		global $zm_sh_title,$imageurl,$post;
@@ -302,6 +409,7 @@ class zm_shbtn_class{
 		
 		<?php
 	}
+	
 	function first_image($url) {
 	  $postid = url_to_postid( $url );
 	  $post = get_post( $postid, "OBJECT" );
