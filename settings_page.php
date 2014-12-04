@@ -52,8 +52,8 @@ class zm_sh_settings{
 			?>
             
             <?php submit_button(); ?>
-            <a href="#TB_inline?width=600&height=150&inlineId=zm-sh-thick-box" class="get_shortcode thickbox button button-default">Get Shortcode</a>
-            <a href="#TB_inline?width=600&height=250&inlineId=zm-sh-thick-box" class="get_phpcode thickbox button button-default">Get Shortcode</a>
+            <a href="#TB_inline?width=600&height=150&inlineId=zm-sh-thick-box" class="get_shortcode thickbox button button-default"><?php _e("Get Shortcode", "zm_sh");?></a>
+            <a href="#TB_inline?width=600&height=250&inlineId=zm-sh-thick-box" class="get_phpcode thickbox button button-default"><?php _e("Get Shortcode", "zm_sh");?></a>
             <script>
 
 			
@@ -111,18 +111,18 @@ class zm_sh_settings{
 		
 		
 		
-		add_settings_field( "iconset","Select button set", array($this,"fld_dropdown"),"zm_shbt_opt", "zm_shbt_sett", array('label_for' => 'iconset' ) );
+		add_settings_field( "iconset", __("Select button set", "zm_sh"), array($this,"fld_dropdown"),"zm_shbt_opt", "zm_shbt_sett", array('label_for' => 'iconset' ) );
 		
-		add_settings_field( "enable_floating","Enable Floating bars", array($this,"zm_sett_field"),"zm_shbt_floting_opt", "zm_shbt_floting", array( 'label_for' => 'enable_floating' ) );		
-		add_settings_field( "show_left","Show on left side", array($this,"left_right_field"),"zm_shbt_floting_opt", "zm_shbt_floting", array( 'label_for' => 'left_side' ) );
-		add_settings_field( "show_right","Show on right side", array($this,"left_right_field"),"zm_shbt_floting_opt", "zm_shbt_floting", array( 'label_for' => 'right_side' ) );
+		add_settings_field( "enable_floating", __("Enable Floating bars", "zm_sh"), array($this,"zm_sett_field"),"zm_shbt_floting_opt", "zm_shbt_floting", array( 'label_for' => 'enable_floating' ) );		
+		add_settings_field( "show_left", __("Show on left side", "zm_sh"), array($this,"left_right_field"),"zm_shbt_floting_opt", "zm_shbt_floting", array( 'label_for' => 'left_side' ) );
+		add_settings_field( "show_right", __("Show on right side", "zm_sh"), array($this,"left_right_field"),"zm_shbt_floting_opt", "zm_shbt_floting", array( 'label_for' => 'right_side' ) );
 		
 		$iconset = zm_sh_get_current_iconset();
 		$icons =  $iconset['icons'];
 		if(is_array($icons))
 		foreach($icons as $id=>$icon){
 			extract($icon);
-			add_settings_field( "$id", "Enable " . $name, array($this,"icon_fields"), "zm_shbt_opt", "zm_shbt_sett",  array( 'label_for' => "$id" ) );
+			add_settings_field( $id,  __("Enable ", "zm_sh")  . $name, array($this,"icon_fields"), "zm_shbt_opt", "zm_shbt_sett",  array( 'label_for' => "$id" ) );
 		}
 		
 	}
@@ -144,10 +144,10 @@ class zm_sh_settings{
     }
 	
 	function zm_floating_sec_cb(){
-		echo "<h3>Set floating share buttons</h3>";
+		_e( "<h3>Set floating share buttons</h3>", "zm_sh");
 	}
 	function zm_sec_cb(){
-		echo "<h3>Select theme and enable or disable buttons</h3>";
+		_e( "<h3>Select theme and enable or disable buttons</h3>", "zm_sh");
 	}
 	
 	function left_right_field($id){
@@ -158,7 +158,7 @@ class zm_sh_settings{
 		echo "
 		<div class='toggle-check'>
 			<input name='zm_shbt_fld[show_on]' id='$id' $chk type='radio' value='$id'/>
-			<label for='$id' data-on='Yes' data-off='No'></label>
+			<label for='$id' data-on='".__("Yes", "zm_sh")."' data-off='".__("No", "zm_sh")."'></label>
 		</div>
 		";
 	}
@@ -172,7 +172,7 @@ class zm_sh_settings{
 		echo "
 		<div class='toggle-check'>
 			<input name='zm_shbt_fld[".$id."]' id='".$id."' ".$chk." type='checkbox'/>
-			<label for='".$id."' data-on='Yes' data-off='No'></label>
+			<label for='".$id."' data-on='".__("Yes", "zm_sh")."' data-off='".__("No", "zm_sh")."'></label>
 		</div>
 		";
 	}
@@ -220,10 +220,10 @@ class zm_sh_settings{
 		?>
           
             <input type="radio" name="zm_shbt_fld[show_on]" value="0" <?php if(!$val) echo $chk;?> id="show_on_0" />
-            <label for="show_on_0">Left</label>
+            <label for="show_on_0"> <?php _e("Left", "zm_sh");?></label>
          
             <input type="radio" name="zm_shbt_fld[show_on]" value="1" <?php if($val) echo $chk;?> id="show_on_1" />
-            <label for="show_on_1">Right</label>
+            <label for="show_on_1"><?php _e("Right", "zm_sh");?></label>
 		
 		<?php
 	}
