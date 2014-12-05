@@ -13,6 +13,8 @@ Html share button. It show lite share button only with html.
 It's not using any javascript whats anothers do.
  
 == Description ==
+For live demo and question <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">Live demo</a>.
+
 New feature:
 You will find a brand new 
 You will be able to display share button horizontally on the left or right side.
@@ -43,7 +45,6 @@ FEATURE::
 
 7. Share with Pinterest
 
-For additional item please ask on  <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">http://www.zm-tech.net/wp-plugins/html-social-share-buttons/</a>.
 
 
 == Installation ==
