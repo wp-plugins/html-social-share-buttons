@@ -1,16 +1,16 @@
 <?php
 
-new		zm_sh_iconset_default;
-class	zm_sh_iconset_default{
+new		zm_sh_iconset_MAElgharabawy;
+class	zm_sh_iconset_MAElgharabawy{
 	
 	function __construct(){
-		add_action("zm_sh_add_iconset", array($this,"add_iconset"), 1);
+		add_action("zm_sh_add_iconset", array($this,"add_iconset"));
 	}
 	
 	function add_iconset(){
 		$iconset = array();
-		$iconset['id'] = 'default';
-		$iconset['name'] = 'Default';
+		$iconset['id'] = 'MAElgharabawy';
+		$iconset['name'] = 'MAElgharabawy';
 		$iconset['dir'] = plugin_dir_path( __FILE__ );
 		$iconset['url'] = plugins_url( "/", __FILE__ );
 		$iconset['stylesheet'] = "style.css";

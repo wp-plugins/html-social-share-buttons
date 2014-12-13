@@ -22,6 +22,7 @@ class zm_html_share_widget extends WP_Widget {
 	}
 
 	function update( $new_instance, $old_instance ) {
+		$instance['title'] = $new_instance['title'];
 		$instance['icons'] = $new_instance['icons'];
 		$instance['iconset'] = $new_instance['iconset'];
 		return $instance;

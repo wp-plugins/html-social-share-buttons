@@ -8,10 +8,6 @@ Version: 2.0.1
 Author URI: http://www.zm-tech.net
 */
 
-
-
-
-
 // Iconset dir where to search for iconsets.
 $dir_iconset = plugin_dir_path(__FILE__) . "iconset";
 $zm_sh_default_options = array(
@@ -74,10 +70,6 @@ class zm_social_share{
 	private $printed_icons;
 	private $stylesheets;
 	
-	public $permalink;
-	public $title;
-	public $imageurl;
-	
 	public static function getInstance() {
 		static $instance;
 		if ($instance === null){
@@ -104,17 +96,17 @@ class zm_social_share{
 		
 		add_shortcode("zm_sh_btn", array($this, 'shortcode_cb'));
 		
-		add_action('loop_start', array($this,'loop_start'));
-		add_action( 'plugins_loaded', 'load_textdomain' );
+		add_filter( 'the_content', array($this, 'filter_the_content') );
+		
 	}
-	/**
-	 * Load plugin textdomain.
-	 *
-	 * @since 1.0.0
-	 */
-	function load_textdomain() {
-		load_plugin_textdomain( 'zm_sh', false, dirname( plugin_basename( __FILE__ ) ) . '/langs' ); 
+	
+	function filter_the_content($content){
+		if ( is_singular('post') && has_post_thumbnail()) {
+			return $content . $this->zm_sh_btn();
+		}
+		return $content;
 	}
+	
 	function shortcode_cb($atts){
 		$atts = shortcode_atts(array(
 									'iconset'	=> "",
@@ -171,9 +163,11 @@ class zm_social_share{
 	
 	//the button generator function
 	function zm_sh_btn($instance = ""){
-		$permalink = $this->permalink;
+		global $zm_sh_title,$imageurl;
+		$permalink = $this->curentPageURL();
 		
 		if($instance){
+			$options = $instance;
 			$iconset_id = $instance['iconset'];
 			$selected_icons = $instance['icons'];
 			$class = $instance['class'];
@@ -186,14 +180,17 @@ class zm_social_share{
 				$class = "left";
 			elseif($options['show_on'] == 'right_side')
 				$class = "right";
+			elseif($options['show_on'] == 'after_post')
+				$class = "widget";
 		}
 		
 		$iconset = zm_sh_get_iconset($iconset_id);
 		$this->stylesheets[$iconset['id']] = $iconset['url'] . $iconset['stylesheet'];
 		$icons = $iconset['icons'];
-		//print_r($iconset);
-		
-        $output = "<div class='zmshbt $class $iconset_id'>";
+		//print_r($options);
+		if($options['show_on'] == 'after_post')
+			$output = "<h3>".$options['title']."</h3>";
+        $output .= "<div class='zmshbt $class $iconset_id'>";
         
 			foreach($icons as $icon){
 				extract($icon);
@@ -208,39 +205,16 @@ class zm_social_share{
 		return $output;
 	}
 	
-	function loop_start(){
-		$this->permalink = $this->curentPageURL();
-		$this->title = get_the_title();
-		$this->imageurl = urlencode( wp_get_attachment_url( get_post_thumbnail_id($post->ID) ) );
-		if(!$this->imageurl)
-			$this->imageurl = $this->first_image($this->permalink);
-		if(is_home()){
-			$this->title = get_option( "blogname");
-		}
-		elseif (is_category())  
-			$this->title = single_cat_title("",false)." Archive";
-		elseif (is_tag())  
-			$this->title = single_tag_title("",false)." Archive";
-		elseif (is_search()) 
-			$this->title = "Search Results for : ".the_search_query("",false);
-		elseif (is_author()) 
-			$this->title = "Author Archive";
-		elseif (is_day()) 	
-			$this->title = "Daily Archive : ".get_the_time('l, F j, Y');
-		elseif (is_month())  
-			$this->title = "Monthly Archive : ".get_the_time('F Y');  
-		elseif (is_year()) 
-			$this->title = "Yearly Archive : ".get_the_time('Y');  
-	}
 	
-	function first_image($url) {
-		$postid = url_to_postid( $url );
-		$post = get_post( $postid, "OBJECT" );
-		$first_img = '';
-		$output = preg_match('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
-		$first_img = $matches[1][0];
-		return $first_img;
-	}
+	
+	/*
+	function zm_sh_icons($icons){
+		$default = $this->default_icons;
+		if(has_filter("zm_sh_default_icons"))
+			$default = apply_filters("zm_sh_default_icons",$default);
+		$icons = array_merge($default, $icons);
+		return $icons;
+	}*/
 	
 	function curentPageURL() {
 		$pageURL = 'http';
