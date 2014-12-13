@@ -16,8 +16,6 @@ class zm_sh_settings{
 	//registering menu item and page on admin
 	function reg_admn_menu(){
 		add_menu_page(__("Html Social Share", "zm-sh"), __("Html Social Share", "zm-sh"),"administrator", "zm_shbt_opt",array($this,"zm_sh_opt"),"","59.679861");
-		add_submenu_page("zm_shbt_opt", __("Add new social buttons", "zm-sh"), __("Add new", "zm-sh"), "administrator", "add_new", array($this,"add_new"));
-		add_submenu_page("zm_shbt_opt", __("All social  buttons", "zm-sh"), __("All social  buttons", "zm-sh"), "administrator", "all", array($this,"show_all"));
 	}
 	
 	//registering scripts and styles for admin

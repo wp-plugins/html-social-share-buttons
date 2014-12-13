@@ -99,7 +99,13 @@ class zm_social_share{
 		add_shortcode("zm_sh_btn", array($this, 'shortcode_cb'));
 		
 		add_filter( 'the_content', array($this, 'filter_the_content') );
-		
+		add_action('plugins_loaded', array($this, 'ap_action_init'));
+
+	}
+	
+	function ap_action_init(){
+		// Localization
+		load_plugin_textdomain('zm-sh', false, dirname(plugin_basename(__FILE__)) . '/languages' );
 	}
 	
 	function filter_the_content($content){
