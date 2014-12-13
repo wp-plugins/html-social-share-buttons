@@ -14,7 +14,7 @@ It's not using any javascript whats anothers do.
  
 == Description ==
 For live demo and question <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">Live demo</a>.
-
+ 
 New feature:
 Translation ready.
 You will find a brand new.
