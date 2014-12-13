@@ -1,0 +1,101 @@
+# Copyright (C) 2014 
+# This file is distributed under the same license as the  package.
+msgid ""
+msgstr ""
+"Project-Id-Version:  \n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/html-social-share-buttons\n"
+"POT-Creation-Date: 2014-12-13 16:54:58+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: settings_page.php:18
+msgid "Html Social Share"
+msgstr ""
+
+#: settings_page.php:19
+msgid "Add new shocial buttons"
+msgstr ""
+
+#: settings_page.php:19
+msgid "Add new"
+msgstr ""
+
+#: settings_page.php:20
+msgid "All shocial buttons"
+msgstr ""
+
+#: settings_page.php:46
+msgid "Html Social Share button"
+msgstr ""
+
+#: settings_page.php:55
+msgid "Get Shortcode"
+msgstr ""
+
+#: settings_page.php:56
+msgid "Get PHP"
+msgstr ""
+
+#: settings_page.php:114
+msgid "Title"
+msgstr ""
+
+#: settings_page.php:115
+msgid "Select button set"
+msgstr ""
+
+#: settings_page.php:117
+msgid "Enable Floating bars"
+msgstr ""
+
+#: settings_page.php:118
+msgid "Show on left side"
+msgstr ""
+
+#: settings_page.php:119
+msgid "Show on right side"
+msgstr ""
+
+#: settings_page.php:120
+msgid "Show after post"
+msgstr ""
+
+#: settings_page.php:127
+msgid "Enable "
+msgstr ""
+
+#: settings_page.php:151
+msgid "<h3>Set floating share buttons</h3>"
+msgstr ""
+
+#: settings_page.php:154
+msgid "<h3>Select theme and enable or disable buttons</h3>"
+msgstr ""
+
+#: settings_page.php:182 settings_page.php:196 settings_page.php:219
+#: settings_page.php:229
+msgid "Yes"
+msgstr ""
+
+#: settings_page.php:182 settings_page.php:196 settings_page.php:219
+#: settings_page.php:229
+msgid "No"
+msgstr ""
+
+#: settings_page.php:244
+msgid "Left"
+msgstr ""
+
+#: settings_page.php:247
+msgid "Right"
+msgstr ""
+
+#: widget.php:6
+msgid ""
+"Html share button. It show lite share button only with html. It's not using "
+"any javascript whats anothers do."
+msgstr ""
