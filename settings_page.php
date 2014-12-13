@@ -15,9 +15,9 @@ class zm_sh_settings{
 	
 	//registering menu item and page on admin
 	function reg_admn_menu(){
-		add_menu_page(__("Html Social Share", "zm_sh"), __("Html Social Share", "zm_sh"),"administrator", "zm_shbt_opt",array($this,"zm_sh_opt"),"","59.679861");
-		add_submenu_page("zm_shbt_opt", __("Add new shocial buttons", "zm_sh"), __("Add new", "zm_sh"), "administrator", "add_new", array($this,"add_new"));
-		add_submenu_page("zm_shbt_opt", __("All shocial buttons", "zm_sh"), __("All shocial buttons", "zm_sh"), "administrator", "all", array($this,"show_all"));
+		add_menu_page(__("Html Social Share", "zm-sh"), __("Html Social Share", "zm-sh"),"administrator", "zm_shbt_opt",array($this,"zm_sh_opt"),"","59.679861");
+		add_submenu_page("zm_shbt_opt", __("Add new shocial buttons", "zm-sh"), __("Add new", "zm-sh"), "administrator", "add_new", array($this,"add_new"));
+		add_submenu_page("zm_shbt_opt", __("All shocial buttons", "zm-sh"), __("All shocial buttons", "zm-sh"), "administrator", "all", array($this,"show_all"));
 	}
 	
 	//registering scripts and styles for admin
@@ -43,7 +43,7 @@ class zm_sh_settings{
 	function zm_sh_opt(){
 		?>
         <div class="wrap">
-            <h2><?php _e("Html Social Share button", "zm_sh");?></h2>
+            <h2><?php _e("Html Social Share button", "zm-sh");?></h2>
             <form class="zm_settings" method="post" action="options.php"> 
             <?php
 			settings_fields( 'zm_shbt_opt' );
@@ -52,8 +52,8 @@ class zm_sh_settings{
 			?>
             
             <?php submit_button(); ?>
-            <a href="#TB_inline?width=600&height=150&inlineId=zm-sh-thick-box" class="get_shortcode thickbox button button-default"><?php _e("Get Shortcode", "zm_sh");?></a>
-            <a href="#TB_inline?width=600&height=250&inlineId=zm-sh-thick-box" class="get_phpcode thickbox button button-default"><?php _e("Get PHP", "zm_sh");?></a>
+            <a href="#TB_inline?width=600&height=150&inlineId=zm-sh-thick-box" class="get_shortcode thickbox button button-default"><?php _e("Get Shortcode", "zm-sh");?></a>
+            <a href="#TB_inline?width=600&height=250&inlineId=zm-sh-thick-box" class="get_phpcode thickbox button button-default"><?php _e("Get PHP", "zm-sh");?></a>
             <script>
 
 			
@@ -111,20 +111,20 @@ class zm_sh_settings{
 		
 		
 		
-		add_settings_field( "title", __("Title", "zm_sh"), array($this,"fld_text"), "zm_shbt_opt", "zm_shbt_sett", array('label_for' => 'title' ) );
-		add_settings_field( "iconset", __("Select button set", "zm_sh"), array($this,"fld_dropdown"),"zm_shbt_opt", "zm_shbt_sett", array('label_for' => 'iconset' ) );
+		add_settings_field( "title", __("Title", "zm-sh"), array($this,"fld_text"), "zm_shbt_opt", "zm_shbt_sett", array('label_for' => 'title' ) );
+		add_settings_field( "iconset", __("Select button set", "zm-sh"), array($this,"fld_dropdown"),"zm_shbt_opt", "zm_shbt_sett", array('label_for' => 'iconset' ) );
 		
-		add_settings_field( "enable_floating", __("Enable Floating bars", "zm_sh"), array($this,"zm_sett_field"),"zm_shbt_floting_opt", "zm_shbt_floting", array( 'label_for' => 'enable_floating' ) );		
-		add_settings_field( "show_left", __("Show on left side", "zm_sh"), array($this,"left_right_field"),"zm_shbt_floting_opt", "zm_shbt_floting", array( 'label_for' => 'left_side' ) );
-		add_settings_field( "show_right", __("Show on right side", "zm_sh"), array($this,"left_right_field"),"zm_shbt_floting_opt", "zm_shbt_floting", array( 'label_for' => 'right_side' ) );
-		add_settings_field( "show_after_post", __("Show after post", "zm_sh"), array($this,"left_right_field"),"zm_shbt_floting_opt", "zm_shbt_floting", array( 'label_for' => 'after_post' ) );
+		add_settings_field( "enable_floating", __("Enable Floating bars", "zm-sh"), array($this,"zm_sett_field"),"zm_shbt_floting_opt", "zm_shbt_floting", array( 'label_for' => 'enable_floating' ) );		
+		add_settings_field( "show_left", __("Show on left side", "zm-sh"), array($this,"left_right_field"),"zm_shbt_floting_opt", "zm_shbt_floting", array( 'label_for' => 'left_side' ) );
+		add_settings_field( "show_right", __("Show on right side", "zm-sh"), array($this,"left_right_field"),"zm_shbt_floting_opt", "zm_shbt_floting", array( 'label_for' => 'right_side' ) );
+		add_settings_field( "show_after_post", __("Show after post", "zm-sh"), array($this,"left_right_field"),"zm_shbt_floting_opt", "zm_shbt_floting", array( 'label_for' => 'after_post' ) );
 		
 		$iconset = zm_sh_get_current_iconset();
 		$icons =  $iconset['icons'];
 		if(is_array($icons))
 		foreach($icons as $id=>$icon){
 			extract($icon);
-			add_settings_field( "$id", __("Enable ", "zm_sh") . $name, array($this,"icon_fields"), "zm_shbt_opt", "zm_shbt_sett",  array( 'label_for' => "$id" ) );
+			add_settings_field( "$id", __("Enable ", "zm-sh") . $name, array($this,"icon_fields"), "zm_shbt_opt", "zm_shbt_sett",  array( 'label_for' => "$id" ) );
 		}
 		
 	}
@@ -148,10 +148,10 @@ class zm_sh_settings{
     }
 	
 	function zm_floating_sec_cb(){
-		_e( "<h3>Set floating share buttons</h3>", "zm_sh");
+		_e( "<h3>Set floating share buttons</h3>", "zm-sh");
 	}
 	function zm_sec_cb(){
-		_e( "<h3>Select theme and enable or disable buttons</h3>", "zm_sh");
+		_e( "<h3>Select theme and enable or disable buttons</h3>", "zm-sh");
 	}
 	
 	function fld_text($id){
@@ -179,7 +179,7 @@ class zm_sh_settings{
 		echo "
 		<div class='toggle-check'>
 			<input name='zm_shbt_fld[show_on]' id='$id' $chk type='radio' value='$id'/>
-			<label for='$id' data-on='".__("Yes", "zm_sh")."' data-off='".__("No", "zm_sh")."'></label>
+			<label for='$id' data-on='".__("Yes", "zm-sh")."' data-off='".__("No", "zm-sh")."'></label>
 		</div>
 		";
 	}
@@ -193,7 +193,7 @@ class zm_sh_settings{
 		echo "
 		<div class='toggle-check'>
 			<input name='zm_shbt_fld[".$id."]' id='".$id."' ".$chk." type='checkbox'/>
-			<label for='$id' data-on='".__("Yes", "zm_sh")."' data-off='".__("No", "zm_sh")."'></label>
+			<label for='$id' data-on='".__("Yes", "zm-sh")."' data-off='".__("No", "zm-sh")."'></label>
 		</div>
 		";
 	}
@@ -216,7 +216,7 @@ class zm_sh_settings{
 			echo "
 			<div class='toggle-check'>
 				<input name='$name"."[$id]' id='$uid' $chk type='checkbox'/>
-				<label for='$uid' data-on='".__("Yes", "zm_sh")."' data-off='".__("No", "zm_sh")."'></label>
+				<label for='$uid' data-on='".__("Yes", "zm-sh")."' data-off='".__("No", "zm-sh")."'></label>
 			</div>
 			";
 		}
@@ -226,7 +226,7 @@ class zm_sh_settings{
 			echo "
 			<div class='toggle-check'>
 				<input name='zm_shbt_fld[icons][".$id."]' id='".$id."' ".$chk." type='checkbox'/>
-				<label for='$id' data-on='".__("Yes", "zm_sh")."' data-off='".__("No", "zm_sh")."'></label>
+				<label for='$id' data-on='".__("Yes", "zm-sh")."' data-off='".__("No", "zm-sh")."'></label>
 			</div>
 			";
 		}
@@ -241,10 +241,10 @@ class zm_sh_settings{
 		?>
           
             <input type="radio" name="zm_shbt_fld[show_on]" value="0" <?php if(!$val) echo $chk;?> id="show_on_0" />
-            <label for="show_on_0"><?php _e("Left", "zm_sh");?></label>
+            <label for="show_on_0"><?php _e("Left", "zm-sh");?></label>
          
             <input type="radio" name="zm_shbt_fld[show_on]" value="1" <?php if($val) echo $chk;?> id="show_on_1" />
-            <label for="show_on_1"><?php _e("Right", "zm_sh");?></label>
+            <label for="show_on_1"><?php _e("Right", "zm-sh");?></label>
 		
 		<?php
 	}

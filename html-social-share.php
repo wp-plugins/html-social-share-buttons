@@ -6,6 +6,8 @@ Description: Html share button. It show lite share button only with html. It's n
 Author: Alimuzzaman Alim
 Version: 2.0.1
 Author URI: http://www.zm-tech.net
+Text Domain: zm-sh
+Domain Path: /languages
 */
 
 // Iconset dir where to search for iconsets.
