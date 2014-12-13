@@ -8,33 +8,33 @@ Tested up to: 4.0.1
 Version: 2.0.1
 License: GPLv2
 Stable tag: 2.0.1
-hjgguuuh 
+
 Html share button. It show lite share button only with html.
 It's not using any javascript whats anothers do.
  
 == Description ==
 For live demo and question <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">Live demo</a>.
 
-New feature:
-Translation ready.
-You will find a brand new.
-3 Different button set.
-Able to add after content of post.
-You will be able to display share button horizontally on the left or right side.
-You can develop add-on for this plugin with your custom icons.
+<strong>New feature:</strong><br />
+Translation ready.<br />
+You will find a brand new.<br />
+3 Different button set.<br />
+Able to add after content of post.<br />
+You will be able to display share button horizontally on the left or right side.<br />
+You can develop add-on for this plugin with your custom icons.<br />
 
-Feature:
-Html CSS Social share buttons widget Plugin WordPress.
-It show lite/simple share button only with html css.
-It's does not using any JavaScript whats another do.
-It's load only extra 10-11 KB total on your site.
-There are top 5 share button in this plugin.
-It's use only one image instead of 5.
-So only one extra HTTP request will occur.
+<strong>Feature:</strong><br />
+Html CSS Social share buttons widget Plugin WordPress.<br />
+It show lite/simple share button only with html css.<br />
+It's does not using any JavaScript whats another do.<br />
+It's load only extra 10-11 KB total on your site.<br />
+There are top 5 share button in this plugin.<br />
+It's use only one image instead of 5.<br />
+So only one extra HTTP request will occur.<br />
 
 Added ability to pickup first image from post for use as thumbnail. ( NEW )
 
-FEATURE::
+<strong>FEATURE::</strong>
 
 1. Share with Facebook.
 
