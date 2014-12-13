@@ -1,0 +1,60 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+.zmshbt.default{
+	
+}
+.zmshbt.default.left, .zmshbt.default.right{
+	top: 30%;
+	z-index:9999;
+	position: fixed;
+	background-color: rgba(223, 153, 226, 0.36);
+	
+	-moz-transition: all .25s linear .5s;
+	-webkit-transition: all .25s linear .5s;
+	transition: all .25s linear .5s;
+	
+	-moz-box-shadow:0 0 10px 7px rgba(205, 65, 224, 0.42) inset, 0 0 4px 3px rgba(242, 181, 245, 1);
+	-webkit-box-shadow:0 0 10px 7px rgba(205, 65, 224, 0.42) inset, 0 0 4px 3px rgba(242, 181, 245, 1);
+	box-shadow:0 0 10px 7px rgba(205, 65, 224, 0.42) inset, 0 0 4px 3px rgba(242, 181, 245, 1);
+	
+}
+
+.zmshbt.default.left {
+	left: -25px;
+}
+.zmshbt.default.left:hover {
+	left: 0;
+}
+.zmshbt.default.right {
+	right: -25px;
+}
+.zmshbt.default.right:hover {
+	right: 0;
+}
+
+.zmshbt.default.widget a{
+	display:inline-block;
+	margin: 5px;
+}
+.zmshbt.default a {
+	width: 32px;
+	height: 32px;
+	display: block;
+	background-size:cover;
+	margin: 10px;
+	
+	-moz-transition: all .25s linear;
+	-webkit-transition: all .25s linear;
+	transition: all .25s linear;
+}
+
+.zmshbt.default a:hover, .zmshbt.default a:active{
+	-moz-transform: scale(1.5);
+	-ms-transform: scale(1.5);
+	-o-transform: scale(1.5);
+	-webkit-transform: scale(1.5);
+	transform: scale(1.5)
+}
