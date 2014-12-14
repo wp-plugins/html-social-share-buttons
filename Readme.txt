@@ -18,7 +18,6 @@ For live demo and question <a href="http://www.zm-tech.net/wp-plugins/html-socia
 <strong>New feature:</strong><br />
 <ul>
 	<li>Translation ready. (Help me to translate to your language.)</li>
-	<li>You will find a brand new.</li>
 	<li>3 Different button set.</li>
 	<li>Able to add after content of post.</li>
 	<li>You will be able to display share button horizontally on the left or right side.</li>
