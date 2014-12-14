@@ -16,7 +16,7 @@ class zm_html_share_widget extends WP_Widget {
 		echo $before_widget;
 		if ( ! empty( $title ) )
 			echo $before_title . $title . $after_title;
-		$instance['class'] = "widget";
+		$instance['class'] = "in_widget";
 		echo $zm_sh->zm_sh_btn($instance);
 		echo $after_widget;
 	}

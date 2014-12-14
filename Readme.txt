@@ -5,50 +5,52 @@ Donate link: none
 Tags: Social-share, Social-share-button, Social share button, Social, share, button, image, widget, icon, zm-tech, translation ready.
 Requires at least: 3.0.0
 Tested up to: 4.0.1
-Version: 2.0.1
+Version: 2.0.2
 License: GPLv2
-Stable tag: 2.0.1
-
+Stable tag: 2.0.2
+hjgguuuh 
 Html share button. It show lite share button only with html.
 It's not using any javascript whats anothers do.
  
 == Description ==
 For live demo and question <a href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">Live demo</a>.
 
-<strong>New feature:</strong><br />
-<ul>
-	<li>Translation ready.</li>
-	<li>You will find a brand new.</li>
-	<li>3 Different button set.</li>
-	<li>Able to add after content of post.</li>
-	<li>You will be able to display share button horizontally on the left or right side.</li>
-	<li>You can develop add-on for this plugin with your custom icons.</li>
-</ul>
+New feature:
+Translation ready.
+You will find a brand new.
+3 Different button set.
+Able to add after content of post.
+You will be able to display share button horizontally on the left or right side.
+You can develop add-on for this plugin with your custom icons.
 
-<strong>Feature:</strong><br />
-<ul>
-	<li>Html CSS Social share buttons widget Plugin WordPress.</li>
-	<li>It show lite/simple share button only with html css.</li>
-	<li>It's does not using any JavaScript whats another do.</li>
-	<li>It's load only extra 10-11 KB total on your site.</li>
-	<li>There are top share button in this plugin.</li>
-	<li>It's use only one image instead of 5.(Will be back in future release)</li>
-	<li>So only one extra HTTP request will occur.(Will be back in future release)</li>
-</ul>
+Feature:
+Html CSS Social share buttons widget Plugin WordPress.
+It show lite/simple share button only with html css.
+It's does not using any JavaScript whats another do.
+It's load only extra 10-11 KB total on your site.
+There are top 5 share button in this plugin.
+It's use only one image instead of 5.
+So only one extra HTTP request will occur.
+
 Added ability to pickup first image from post for use as thumbnail. ( NEW )
 
-<strong>FEATURE::</strong>
+FEATURE::
+
+1. Share with Facebook.
+
+2. Share with Twitter.
+
+3. Share with LinkedIn.
+
+4. Share with Google Plus.
+
+5. Bookmark with Google Bookmark.
+
+6. Share with Email.
+
+7. Share with Pinterest
 
 
-<ol>
-	<li>Share with Facebook.</li>
-	<li>Share with Twitter.</li>
-	<li>Share with LinkedIn.</li>
-	<li>Share with Google Plus.</li>
-	<li>Bookmark with Google Bookmark.</li>
-	<li>Share with Email.</li>
-	<li>Share with Pinterest</li>
-</ol>
 
 == Installation ==
 1. At first activate the plugin.
