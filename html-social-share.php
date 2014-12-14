@@ -109,7 +109,8 @@ class zm_social_share{
 	}
 	
 	function filter_the_content($content){
-		if ( is_singular('post') && has_post_thumbnail()) {
+		$options = $this->options;
+		if( is_singular('post') && $options['show_on'] == 'after_post') {
 			return $content . $this->zm_sh_btn();
 		}
 		return $content;
