@@ -4,7 +4,7 @@ Plugin Name: Html Social share buttons
 Plugin URI: http://wordpress.org/plugins/html-social-share-buttons/
 Description: Html share button. It show lite share button only with html. It's not using any javascript whats anothers do. It's load only extra 10-11 kb total on your site.
 Author: Alimuzzaman Alim
-Version: 2.0.2
+Version: 2.0.3
 Author URI: http://www.zm-tech.net
 Text Domain: zm-sh
 Domain Path: /languages
@@ -100,9 +100,66 @@ class zm_social_share{
 		
 		add_filter( 'the_content', array($this, 'filter_the_content') );
 		add_action('plugins_loaded', array($this, 'ap_action_init'));
+        add_action( 'vc_before_init', array( $this, 'integrateWithVC' ) );
 
 	}
 	
+	public function integrateWithVC() {
+ 		$iconsets = get_iconset_list();
+		$iconsets = array_flip($iconsets);
+		
+		$iconset	= zm_sh_get_iconset();
+		$icons		= zm_sh_get_icons();
+		//print_r($iconsets);
+        /*
+        Add your Visual Composer logic here.
+        Lets call vc_map function to "register" our custom shortcode within Visual Composer interface.
+
+        More info: http://kb.wpbakery.com/index.php?title=Vc_map
+        */
+        vc_map( array(
+						"name" => __("Html Social Share", 'vc_extend'),
+						"description" => __("Html Social Share", 'vc_extend'),
+						"base" => "zm_sh_btn",
+						"class" => "zm_sh_btn",
+						"controls" => "full",
+						"category" => __('Content', 'js_composer'),
+						'admin_enqueue_js' => array( plugins_url( '/assets', __FILE__) .'/vc_scripts.js'),
+						'admin_enqueue_css' => array(plugins_url( '/assets', __FILE__) .'/admin-widget.css'),
+						"params" => array(
+							array(
+							  "type"		=> "textfield",
+							  "holder"		=> "div",
+							  "class"		=> "",
+							  "heading"		=> __("Title", 'zm-sh'),
+							  "param_name"	=> "title",
+							  "value"		=> __("Share this page", 'zm-sh'),
+							  "description"	=> __("Add social share button", 'zm-sh')
+						  ),
+							array(
+							  "type"		=> "dropdown",
+							  "holder"		=> "div",
+							  "class"		=> "",
+							  "heading"		=> __("Iconset", 'zm-sh'),
+							  "param_name"	=> "iconset",
+							  "value"		=> $iconsets,
+							  "description"	=> __("Select iconset to use", 'zm-sh'),
+						  ),
+							array(
+							  "type"		=> "checkbox",
+							  "holder"		=> "div",
+							  "class"		=> "",
+							  "heading"		=> __("Icons", 'zm-sh'),
+							  "param_name"	=> "icons",
+							  "value"		=> $icons,
+							  "description"	=> __("Select icons", 'zm-sh'),
+							  //"dependency"	=> array("element"=>"iconset", "callback" => "zm_sh_get_icons"),
+
+						  ),
+					)
+        ) );
+    }
+    
 	function ap_action_init(){
 		// Localization
 		load_plugin_textdomain('zm-sh', false, dirname(plugin_basename(__FILE__)) . '/languages' );
@@ -120,7 +177,7 @@ class zm_social_share{
 		$atts = shortcode_atts(array(
 									'iconset'	=> "",
 									'icons'		=> "",
-									'class'		=> "",
+									'class'		=> "in_widget",
 								),
 								$atts,
 								'zm_sh_btn'
@@ -129,8 +186,8 @@ class zm_social_share{
 		$icons = explode(",", $icons);
 		$atts['icons'] = array_flip($icons);
 		return $this->zm_sh_btn($atts);
-		
 	}
+	
 	//registering widget
 	function register_widgets() {
 		register_widget( 'zm_html_share_widget' );
@@ -201,12 +258,14 @@ class zm_social_share{
 			$output = "<h3>".$options['title']."</h3>";
         $output .= "<div class='zmshbt $class $iconset_id'>";
         
-			foreach($icons as $icon){
+			foreach($selected_icons as $id => $ico){
+				$icon = $icons[$id];
+				if(!$icon) continue;
 				extract($icon);
 				$icon['iconset_id'] = $iconset['id'];
 				$icon['iconset_url'] = $iconset['url'];
 				if(!array_key_exists($id, (array)$selected_icons) and !in_array($id, (array)$selected_icons)) continue;
-				$this->printed_icons[$iconset['id']."_".$id] =$icon;
+				$this->printed_icons[$iconset['id']."_".$id] = $icon;
 				$url= apply_filters("zm_sh_placeholder", $url);
 				$output .= "<a id='$id' class='$class'	target='_blank' href='$url'></a>\n";
 			}

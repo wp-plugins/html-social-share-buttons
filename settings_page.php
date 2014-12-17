@@ -21,10 +21,10 @@ class zm_sh_settings{
 	//registering scripts and styles for admin
 	function admin_scripts($hook) {
 		if ( 'toplevel_page_zm_shbt_opt' == $hook ) {
-			wp_enqueue_style( 'zm_sh_admin_styles_scripts', plugin_dir_url( __FILE__ ) . 'admin.css' );
+			wp_enqueue_style( 'zm_sh_admin_styles_scripts', plugin_dir_url( __FILE__ ) . 'assets/admin.css' );
 		}
 		elseif ( 'widgets.php' == $hook ) {
-			wp_enqueue_style( 'zm_sh_admin_styles_scripts', plugin_dir_url( __FILE__ ) . 'admin-widget.css' );
+			wp_enqueue_style( 'zm_sh_admin_styles_scripts', plugin_dir_url( __FILE__ ) . 'assets/admin-widget.css' );
 		}
 	}
 	
@@ -58,7 +58,7 @@ class zm_sh_settings{
 			jQuery(document).ready(function($) {
                 $('.get_shortcode').on('click',function(e){
 					$iconset = $("#iconset").val();
-					$shortcode = "[zm_sh_btn class='widget' iconset='" + $iconset + "' icons='";
+					$shortcode = "[zm_sh_btn iconset='" + $iconset + "' icons='";
 					e.preventDefault();
 					$icons = [];
 					$( ".zm_settings input[name^='zm_shbt_fld[icons]']:checked").each(function(index, element) {
@@ -73,13 +73,16 @@ class zm_sh_settings{
                 $('.get_phpcode').on('click',function(e){
 					e.preventDefault();
 					$iconset = $("#iconset").val();
-					$phpcode = "\<\?php\n if(function_exists('zm_sh_opt')){\n\t$options['iconset'] = '" + $iconset + "';\n\t$options['icons'] = array(\n\t\t'";
+					$phpcode = "\<\?php\n if(function_exists('zm_sh_opt')){\n\t";
+					$phpcode += "$options['iconset']	= '" + $iconset + "';\n\t";
+					$phpcode += "$options['class']		= 'in_widget';\n\t";
+					$phpcode += "$options['icons']		= array( '";
 					$icons = [];
 					$( ".zm_settings input[name^='zm_shbt_fld[icons]']:checked").each(function(index, element) {
                         $icons.push( $(element).attr("id"));
                     });
-					$phpcode += $icons.join("',\n\t\t'");
-					$phpcode += "'\n\t);\n";
+					$phpcode += $icons.join("', '");
+					$phpcode += "' );\n";
 					$phpcode += "\techo zm_sh_btn($options);";
 					$phpcode += "\n}\n?>";
 					$("#copy_shortcode").html($phpcode);
