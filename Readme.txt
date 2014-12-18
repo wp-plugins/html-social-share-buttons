@@ -2,7 +2,7 @@
 Contributors: alimuzzamanalim
 Author: Md. Alimuzzaman Alim
 Donate link: none
-Tags: Social-share, Social-share-button, Visual Composer, Social, share, button, widget, translation ready, facebook share, google plus share, linkedin share, social media share, social sharing, Social-share-button, twitter share.
+Tags: Social-share, Social-share-button, Visual Composer, shortcode, Social, share, button, widget, translation ready, facebook share, google plus share, linkedin share, social media share, social sharing, Social-share-button, twitter share.
 Requires at least: 3.0.0
 Tested up to: 4.0.1
 Version: 2.0.3
@@ -17,11 +17,11 @@ For live demo and question <a href="http://www.zm-tech.net/wp-plugins/html-socia
 <strong>New feature:</strong><br />
 <ul>
 	<li>Visual composer support</li>
-	<li>Short code generator</li>
+	<li>Shortcode generator ( No confusion about shortcode! You will get shortcode via Get shortcode button of this plugin.)</li>
 	<li>Opiton to add bottom of post.</li>
-	<li>PHP code generator to use in theme</li>
+	<li>PHP code generator to use in theme.</li>
 	<li>Translation ready. (Help me to translate to your language.)</li>
-	<li>3 Different button set.</li>
+	<li>3 Different button set and style.</li>
 	<li>You will be able to display share button horizontally on the left or right side.</li>
 	<li>You can develop add-on for this plugin with your custom icons.</li>
 </ul>
