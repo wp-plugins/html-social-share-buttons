@@ -4,7 +4,7 @@ Author: Md. Alimuzzaman Alim
 Donate link: none
 Tags: Social-share, Social-share-button, Visual Composer, shortcode, Social, share, button, widget, translation ready, facebook share, google plus share, linkedin share, social media share, social sharing, Social-share-button, twitter share.
 Requires at least: 3.0.0
-Tested up to: 4.0.1
+Tested up to: 4.1
 Version: 2.0.3
 License: GPLv2
 Stable tag: 2.0.3
