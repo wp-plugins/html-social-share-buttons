@@ -9,7 +9,7 @@ class zm_sh_filters{
 	
 	function zm_sh_placeholder($item){
 		$title = get_the_title();
-		$parmalink = get_the_permalink();
+		$parmalink = zm_sh_curentPageURL();
 		$description = get_bloginfo ( 'description' );
 		$item = str_replace( "%%permalink%%",	$parmalink,		$item);
 		$item = str_replace( "%%title%%",		$title,			$item);
