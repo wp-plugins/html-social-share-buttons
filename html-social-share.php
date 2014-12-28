@@ -13,18 +13,22 @@ Domain Path: /languages
 // Iconset dir where to search for iconsets.
 $dir_iconset = plugin_dir_path(__FILE__) . "iconset";
 $zm_sh_default_options = array(
-						"enable_floating" => 1,
-						"show_on" => "left_side",
-						"iconset" => "default",
-						"icons" => array
-							(
-								"facebook" => "on",
-								"twitter" => "on",
-								"linkedin" => "on",
-								"googlepluse" => "on",
-								"bookmark" => "on",
-								"pinterest" => "on",
-								"mail" => "on",
+						"title"				=> "Share this with your friends",
+						"iconset"			=> "default",
+						
+						"show_left"			=> true,
+						"show_right"		=> false,
+						"show_before_post"	=> false,
+						"show_after_post"	=> true,
+						
+						"icons" => array(
+							"facebook"		=> "on",
+							"twitter"		=> "on",
+							"linkedin"		=> "on",
+							"googlepluse"	=> "on",
+							"bookmark"		=> "on",
+							"pinterest"		=> "on",
+							"mail"			=> "on",
 							)
 						
 					);
@@ -51,6 +55,7 @@ include("filters.php");
 //it's register widget
 include("widget.php");
 
+require_once("form.php");
 
 include("settings_page.php");
 
@@ -98,7 +103,6 @@ class zm_social_share{
 		
 		add_shortcode("zm_sh_btn", array($this, 'shortcode_cb'));
 		
-		add_filter( 'the_content', array($this, 'filter_the_content') );
 		add_action('plugins_loaded', array($this, 'ap_action_init'));
         add_action( 'vc_before_init', array( $this, 'integrateWithVC' ) );
 
@@ -163,12 +167,22 @@ class zm_social_share{
 	function ap_action_init(){
 		// Localization
 		load_plugin_textdomain('zm-sh', false, dirname(plugin_basename(__FILE__)) . '/languages' );
+		
+		if($this->options['show_after_post'] or $this->options['show_before_post'])
+			add_filter( 'the_content', array($this, 'filter_the_content') );
+		
+			
+		
 	}
 	
 	function filter_the_content($content){
 		$options = $this->options;
-		if( is_singular('post') && $options['show_on'] == 'after_post') {
-			return $content . $this->zm_sh_btn();
+		$options['class'] = "in_widget";
+		if( is_singular() && $options['show_before_post']) {
+			$content = $this->zm_sh_btn($options).$content;
+		}
+		if( is_singular() && $options['show_after_post']) {
+			$content = $content . $this->zm_sh_btn($options);
 		}
 		return $content;
 	}
@@ -196,8 +210,14 @@ class zm_social_share{
 	//print styles and floating buttons 
 	function footer(){
 		$options = $this->options;
-		if(isset($options['enable_floating']) and ($options['show_on'] == 'left_side' or $options['show_on'] == 'right_side'))
+		if($options['show_left']){
 			echo $this->zm_sh_btn();
+		}
+		if($options['show_right']){
+			$options['class'] = 'right';
+			echo $this->zm_sh_btn($options);
+		}
+		
 		$this->register_styles();
 		$this->icon_styles();
 	}
@@ -232,23 +252,11 @@ class zm_social_share{
 		global $zm_sh_title,$imageurl;
 		$permalink = $this->curentPageURL();
 		
-		if($instance){
-			$options = $instance;
-			$iconset_id = $instance['iconset'];
-			$selected_icons = $instance['icons'];
-			$class = $instance['class'];
-		}
-		else{
-			$options = $this->options;
-			$iconset_id = $options['iconset'];
-			$selected_icons = $options['icons'];
-			if($options['show_on'] == 'left_side')
-				$class = "left";
-			elseif($options['show_on'] == 'right_side')
-				$class = "right";
-			elseif($options['show_on'] == 'after_post')
-				$class = "in_widget";
-		}
+		$options = $instance?$instance:$this->options;
+		
+		$class = $options['class']?$options['class']:"left";
+		$iconset_id = $options['iconset'];
+		$selected_icons = $options['icons'];
 		
 		$iconset = zm_sh_get_iconset($iconset_id);
 		$this->stylesheets[$iconset['id']] = $iconset['url'] . $iconset['stylesheet'];

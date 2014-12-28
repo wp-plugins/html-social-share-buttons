@@ -3,10 +3,10 @@
 
 
 
-.zmshbt.default{
+.zmshbt.flat{
 	
 }
-.zmshbt.default.left, .zmshbt.default.right{
+.zmshbt.flat.left, .zmshbt.flat.right{
 	top: 30%;
 	z-index:9999;
 	position: fixed;
@@ -17,24 +17,24 @@
 	
 }
 
-.zmshbt.default.left {
+.zmshbt.flat.left {
 	left: -25px;
 }
-.zmshbt.default.left:hover {
+.zmshbt.flat.left:hover {
 	left: 0;
 }
-.zmshbt.default.right {
+.zmshbt.flat.right {
 	right: -25px;
 }
-.zmshbt.default.right:hover {
+.zmshbt.flat.right:hover {
 	right: 0;
 }
 
-.zmshbt.default.in_widget a{
+.zmshbt.flat.in_widget a{
 	display:inline-block;
 	margin: 5px;
 }
-.zmshbt.default a {
+.zmshbt.flat a {
 	width: 32px;
 	height: 32px;
 	display: block;
@@ -46,7 +46,7 @@
 	transition: all .25s linear;
 }
 
-.zmshbt.default a:hover, .zmshbt.default a:active{
+.zmshbt.flat a:hover, .zmshbt.flat a:active{
 	-moz-transform: scale(1.5);
 	-ms-transform: scale(1.5);
 	-o-transform: scale(1.5);

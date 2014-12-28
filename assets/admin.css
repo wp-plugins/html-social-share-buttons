@@ -1,65 +1,67 @@
 @charset "utf-8";
 /* CSS Document */
-.toggle-check{
-	position:relative;
-}
-.toggle-check input {
-	position: absolute;
-	margin-left: -9999px;
-	visibility: hidden;
-}
 
-.toggle-check label {
+input.toggle-check {
+	border:none!important;
+	width: 90px;
 	padding: 2px;
-	width: 120px;
-	height: 60px;
+	height: 35px;
+	outline: none!important;
 	display: block;
-	position: relative;
 	cursor: pointer;
-	outline: none;
+	position: relative;
 	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+		-moz-user-select:none;
+		-ms-user-select: none;
+			user-select: none;
 }
-.toggle-check label:before,
-.toggle-check label:after {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  color: #fff;
-  font-family: "Roboto Slab", serif;
-  font-size: 20px;
-  text-align: center;
-  line-height: 60px;
+input.toggle-check:after {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	color: #fff;
+	font-family: "Roboto Slab", serif;
+	font-size: 18px;
+	line-height: 35px;
+	border-radius: 30px;
+	padding-left: 10px;
+	background: url(setting.png);
+	background-repeat: no-repeat;
+	padding-left: 10px;
+	padding-right: 10px;
+	-webkit-transition: all 0.5s;
+	transition: all 0.5s;
 }
-.toggle-check label:before {
-  background-color: #dddddd;
-  content: attr(data-off);
-  -webkit-transition: -webkit-transform 0.5s;
-          transition: transform 0.5s;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+input.toggle-check:after {
+	background-color: #888888;
+	content: attr(data-off);
+	background-position: 0%;
+	text-align: right;
 }
-.toggle-check label:after {
-  background-color: #8ce196;
-  content: attr(data-on);
-  -webkit-transition: -webkit-transform 0.5s;
-          transition: transform 0.5s;
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+input.toggle-check:checked:after {
+	background-color: #0096d7;
+	content: attr(data-on);
+	background-position: 100%;
+	text-align: left;
 }
 
-.toggle-check input:checked + label:before {
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
+.row{
+	min-height:40px;
 }
-.toggle-check input:checked + label:after {
-  -webkit-transform: rotateY(0);
-          transform: rotateY(0);
+.row:before, .row:after {
+	content: " ";
+	display: table;
+	clear: both;
+}
+.row label, .row input {
+	float: left;
+}
+.row label {
+	float: left;
+	width: 25%;
+	font-size: 16px;
+	font-weight:bold;
 }

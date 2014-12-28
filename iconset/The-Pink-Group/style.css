@@ -10,7 +10,6 @@
 	z-index:9999;
 	position: fixed;
 	top: 30%;
-	background-color: rgba(223, 153, 226, 0.36);
 	-moz-transition: all .25s linear .5s;
 	-webkit-transition: all .25s linear .5s;
 	transition: all .25s linear .5s;

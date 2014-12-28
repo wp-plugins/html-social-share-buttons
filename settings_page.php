@@ -39,15 +39,22 @@ class zm_sh_settings{
 	}
 	//option page content
 	function zm_sh_opt(){
+		$zm_form = new zm_form;
 		?>
         <div class="wrap">
             <h2><?php _e("Html Social Share button", "zm-sh");?></h2>
             <form class="zm_settings" method="post" action="options.php"> 
-            <?php
-			settings_fields( 'zm_shbt_opt' );
-			do_settings_sections("zm_shbt_floting_opt");
-			do_settings_sections("zm_shbt_opt");
-			?>
+            <?php settings_fields( 'zm_shbt_opt' ); ?>
+            <h3>Select theme and Icon Style</h3>
+            <?php $zm_form->text("title", "Enter a Title");?>
+ 
+            <?php $zm_form->select_iconset("iconset", "Select Button Style");?>
+            <?php $zm_form->checkbox("show_left", "Show on Left Side");?>
+            <?php $zm_form->checkbox("show_right", "Show on Right Side");?>
+            <?php $zm_form->checkbox("show_before_post", "Show Before Post");?>
+            <?php $zm_form->checkbox("show_after_post", "Show After Post");?>
+            
+            <?php $zm_form->icon_fields("Select Buttons", "Enable");?>
             
             <?php submit_button(); ?>
             <a href="#TB_inline?width=600&height=150&inlineId=zm-sh-thick-box" class="get_shortcode thickbox button button-default"><?php _e("Get Shortcode", "zm-sh");?></a>
@@ -101,6 +108,7 @@ class zm_sh_settings{
             </div>
         </div>
         <?php
+		print_r($this->options);
 	}
 	
 	

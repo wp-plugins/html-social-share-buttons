@@ -56,7 +56,7 @@ class zm_sh_iconset{
 	
 }
 
-function get_iconset_list(){
+function zm_sh_get_iconset_list(){
 	$obj_iconset = zm_sh_iconset::getInstance();
 	return $obj_iconset->get_iconset_list();
 }
