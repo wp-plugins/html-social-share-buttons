@@ -10,7 +10,7 @@ class zm_sh_settings{
 		//registering settings/options for admin page
 		add_action('admin_init', array($this,'zm_reg_sett'));
 		//registering scripts and styles for admin
-		add_action( 'admin_enqueue_scripts', array($this,'admin_scripts') );
+		add_action( 'admin_enqueue_scripts', array($this,'admin_scripts'),20 );
 	}
 	
 	//registering menu item and page on admin
@@ -57,8 +57,8 @@ class zm_sh_settings{
             <?php $zm_form->icon_fields("Select Buttons", "Enable");?>
             
             <?php submit_button(); ?>
-            <a href="#TB_inline?width=600&height=150&inlineId=zm-sh-thick-box" class="get_shortcode thickbox button button-default"><?php _e("Get Shortcode", "zm-sh");?></a>
-            <a href="#TB_inline?width=600&height=250&inlineId=zm-sh-thick-box" class="get_phpcode thickbox button button-default"><?php _e("Get PHP", "zm-sh");?></a>
+            <a href="#TB_inline?width=600&height=250&inlineId=zm-sh-thick-box" class="get_phpcode thickbox  button button-default"><?php _e("<\?> Get PHP Code", "zm-sh");?></a>
+            <a href="#TB_inline?width=600&height=150&inlineId=zm-sh-thick-box" class="get_shortcode thickbox button button-default"><?php _e("[] Get Shortcode", "zm-sh");?></a>
             <script>
 
 			
@@ -99,6 +99,9 @@ class zm_sh_settings{
             });
 			
 			</script>
+            <p class="desin_by">
+            	Designed By Hakan Ertan <a href="https://hakan-ertan.com/">www.hakan-ertan.com</a>
+            </p>
 			</form>
             <?php add_thickbox(); ?>
             <div id="zm-sh-thick-box" style="display:none;">
@@ -108,34 +111,12 @@ class zm_sh_settings{
             </div>
         </div>
         <?php
-		print_r($this->options);
+		//print_r($this->options);
 	}
 	
 	
 	function zm_reg_sett(){
 		register_setting( 'zm_shbt_opt', 'zm_shbt_fld',array($this,"sanitize"));
-		
-		add_settings_section( "zm_shbt_floting", "", array($this,"zm_floating_sec_cb"), "zm_shbt_floting_opt" );
-		add_settings_section( "zm_shbt_sett", "", array($this,"zm_sec_cb"), "zm_shbt_opt" );
-		
-		
-		
-		add_settings_field( "title", __("Title", "zm-sh"), array($this,"fld_text"), "zm_shbt_opt", "zm_shbt_sett", array('label_for' => 'title' ) );
-		add_settings_field( "iconset", __("Select button set", "zm-sh"), array($this,"fld_dropdown"),"zm_shbt_opt", "zm_shbt_sett", array('label_for' => 'iconset' ) );
-		
-		add_settings_field( "enable_floating", __("Enable Floating bars", "zm-sh"), array($this,"zm_sett_field"),"zm_shbt_floting_opt", "zm_shbt_floting", array( 'label_for' => 'enable_floating' ) );		
-		add_settings_field( "show_left", __("Show on left side", "zm-sh"), array($this,"left_right_field"),"zm_shbt_floting_opt", "zm_shbt_floting", array( 'label_for' => 'left_side' ) );
-		add_settings_field( "show_right", __("Show on right side", "zm-sh"), array($this,"left_right_field"),"zm_shbt_floting_opt", "zm_shbt_floting", array( 'label_for' => 'right_side' ) );
-		add_settings_field( "show_after_post", __("Show after post", "zm-sh"), array($this,"left_right_field"),"zm_shbt_floting_opt", "zm_shbt_floting", array( 'label_for' => 'after_post' ) );
-		
-		$iconset = zm_sh_get_current_iconset();
-		$icons =  $iconset['icons'];
-		if(is_array($icons))
-		foreach($icons as $id=>$icon){
-			extract($icon);
-			add_settings_field( "$id", __("Enable ", "zm-sh") . $name, array($this,"icon_fields"), "zm_shbt_opt", "zm_shbt_sett",  array( 'label_for' => "$id" ) );
-		}
-		
 	}
 	
 	function sanitize( $input ){
@@ -155,147 +136,5 @@ class zm_sh_settings{
 		}
         return $new_input;
     }
-	
-	function zm_floating_sec_cb(){
-		_e( "<h3>Set floating share buttons</h3>", "zm-sh");
-	}
-	function zm_sec_cb(){
-		_e( "<h3>Select theme and enable or disable buttons</h3>", "zm-sh");
-	}
-	
-	function fld_text($id){
-		global $zm_sh_in_widget;
-		$id	= $uid = $id['label_for'];
-		if($zm_sh_in_widget){
-			$obj = $zm_sh_in_widget['obj'];
-			$instance = $zm_sh_in_widget['intstance'];
-			$value = $instance[$id];
-			$uid = $obj->get_field_id($id);
-			$name = $obj->get_field_name($id);
-		}
-		else{
-			$value	= $this->options[$id];
-			$name = "zm_shbt_fld[$id]";
-		}
-		echo "<input type='text' id='$uid' name='$name' value='$value' >";
-	}
-	
-	function left_right_field($id){
-		$id=$id['label_for'];
-		$chk="";
-		if(isset($this->options["show_on"]) and $this->options["show_on"] == $id)
-			$chk="checked";
-		echo "
-		<div class='toggle-check'>
-			<input name='zm_shbt_fld[show_on]' id='$id' $chk type='radio' value='$id'/>
-			<label for='$id' data-on='".__("Yes", "zm-sh")."' data-off='".__("No", "zm-sh")."'></label>
-		</div>
-		";
-	}
-	
-	function zm_sett_field($id){
-		$id=$id['label_for'];
-		$chk="";
-		if(isset($this->options["$id"]))
-			if($this->options["$id"])
-				$chk="checked";
-		echo "
-		<div class='toggle-check'>
-			<input name='zm_shbt_fld[".$id."]' id='".$id."' ".$chk." type='checkbox'/>
-			<label for='$id' data-on='".__("Yes", "zm-sh")."' data-off='".__("No", "zm-sh")."'></label>
-		</div>
-		";
-	}
-	
-	
-	function icon_fields($id){
-		global $zm_sh_in_widget;
-		$id=$id['label_for'];
-		$chk="";
-		$icons = $this->options["icons"];
-		if($zm_sh_in_widget){
-			$obj = $zm_sh_in_widget['obj'];
-			$intstance = $zm_sh_in_widget['intstance'];
-			$icons = $intstance['icons'];
-			$uid = $obj->get_field_id($id);
-			$name = $obj->get_field_name('icons');
-			
-			if(isset($icons[$id]) and $icons[$id])
-				$chk="checked";
-			echo "
-			<div class='toggle-check'>
-				<input name='$name"."[$id]' id='$uid' $chk type='checkbox'/>
-				<label for='$uid' data-on='".__("Yes", "zm-sh")."' data-off='".__("No", "zm-sh")."'></label>
-			</div>
-			";
-		}
-		else{
-			if(isset($icons[$id]) and $icons[$id])
-				$chk="checked";
-			echo "
-			<div class='toggle-check'>
-				<input name='zm_shbt_fld[icons][".$id."]' id='".$id."' ".$chk." type='checkbox'/>
-				<label for='$id' data-on='".__("Yes", "zm-sh")."' data-off='".__("No", "zm-sh")."'></label>
-			</div>
-			";
-		}
-	}
-	
-	function zm_sett_field_radio($id){
-		$id=$id['label_for'];
-		$chk=" checked";
-		$val = 0;
-		if(isset($this->options["$id"]))
-			$val = $this->options["$id"];
-		?>
-          
-            <input type="radio" name="zm_shbt_fld[show_on]" value="0" <?php if(!$val) echo $chk;?> id="show_on_0" />
-            <label for="show_on_0"><?php _e("Left", "zm-sh");?></label>
-         
-            <input type="radio" name="zm_shbt_fld[show_on]" value="1" <?php if($val) echo $chk;?> id="show_on_1" />
-            <label for="show_on_1"><?php _e("Right", "zm-sh");?></label>
-		
-		<?php
-	}
-	
-	function fld_dropdown($id){
-		$id=$id['label_for'];
-		global $zm_sh_in_widget;
-		if($zm_sh_in_widget){
-			$obj = $zm_sh_in_widget['obj'];
-			$instance = $zm_sh_in_widget['intstance'];
-			$curr_iconset = $instance[$id];
-			if($curr_iconset == "")
-				$curr_iconset = 'default';
-			
-			$uid = $obj->get_field_id($id);
-			$name = $obj->get_field_name($id);
-			
-			echo "<select id='".$uid."' name='$name'>";
-			
-			$iconsets = zm_sh_get_iconsets();
-			$iconset_default = $iconsets['default'];
-			unset( $iconsets['default']);
-			$iconsets = array_merge( array('default' => $iconset_default), $iconsets);
-			
-			foreach($iconsets as $iconset){
-				$selected = "";
-				if($iconset['id'] == $curr_iconset)
-					$selected = "selected";
-				echo "<option value='{$iconset['id']}' $selected>{$iconset['name']}</option>";
-			}
-			echo "</select>";
-		}
-		else{
-			echo "<select id='".$id."' name='zm_shbt_fld[".$id."]'>";
-			foreach(zm_sh_get_iconsets() as $iconset){
-				$selected = "";
-				if($iconset['id'] == $this->options[$id])
-					$selected = "selected";
-				echo "<option value='{$iconset['id']}' $selected>{$iconset['name']}</option>";
-			}
-			echo "</select>";
-		}
-	}
 
 }

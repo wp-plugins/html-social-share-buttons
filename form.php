@@ -23,11 +23,22 @@ class zm_form{
 		$name = $name ? $name : "zm_shbt_fld[$id]";
 		echo "<div class='row'>";
 			echo "<label for='$id'>$label</label>";
+			echo "<input name='$name' id='$id' $chk type='checkbox' value='1'/>";
+			echo "<label for='$id' class='$class' data-on='$yes' data-off='$no'></label>";
+		echo "</div>";
+	}
+	
+	function show_on($id, $label, $name = '', $selected=false, $class = 'toggle-check', $yes = "", $no = ""){
+		$yes = $yes?$yes:__("Yes", "zm_sh");
+		$no = $no?$no:__("No", "zm_sh");
+		$chk = $selected===false?checked($this->options[$id], true, false):$selected;
+		$name = $name ? $name : "zm_shbt_fld[$id]";
+		echo "<div class='row'>";
+			echo "<label for='$id'>$label</label>";
 			echo "<input name='$name' id='$id' class='$class' $chk type='checkbox' value='1' data-on='$yes' data-off='$no'/>";
 		echo "</div>";
 	}
 	
-		
 	function icon_fields($label, $label_prefix, $class = 'toggle-check', $yes = "", $no = ""){
 		$icons = zm_sh_get_icons($this->options['iconset']);
 		echo "<div class='row' style='margin-bottom:20px'>";
