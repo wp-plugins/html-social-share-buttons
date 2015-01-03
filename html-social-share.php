@@ -11,7 +11,16 @@ Domain Path: /languages
 */
 
 // Iconset dir where to search for iconsets.
+define("zm_sh_dir", plugin_dir_path(__FILE__));
+define("zm_sh_url_iconset", zm_sh_dir . "iconset");
+
+define("zm_sh_url", plugin_dir_url(__FILE__));
+define("zm_sh_url_iconset", zm_sh_url . "iconset/");
+define("zm_sh_url_assets", zm_sh_url . "assets/");
+define("zm_sh_url_assets_img", zm_sh_url_assets . "image/");
+
 $dir_iconset = plugin_dir_path(__FILE__) . "iconset";
+
 $zm_sh_default_options = array(
 						"title"				=> "Share this with your friends",
 						"iconset"			=> "default",

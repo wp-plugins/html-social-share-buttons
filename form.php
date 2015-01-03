@@ -24,18 +24,37 @@ class zm_form{
 		echo "<div class='row'>";
 			echo "<label for='$id'>$label</label>";
 			echo "<input name='$name' id='$id' $chk type='checkbox' value='1'/>";
-			echo "<label for='$id' class='$class' data-on='$yes' data-off='$no'></label>";
+			echo "<span class='for_label'>";
+				echo "<label for='$id' class='$class' data-on='$yes' data-off='$no'></label>";
+			echo "</span>";
 		echo "</div>";
 	}
 	
-	function show_on($id, $label, $name = '', $selected=false, $class = 'toggle-check', $yes = "", $no = ""){
-		$yes = $yes?$yes:__("Yes", "zm_sh");
-		$no = $no?$no:__("No", "zm_sh");
-		$chk = $selected===false?checked($this->options[$id], true, false):$selected;
-		$name = $name ? $name : "zm_shbt_fld[$id]";
-		echo "<div class='row'>";
+	function show_on($id, $label, $selected=false, $class = 'toggle-check', $yes = "", $no = ""){
+		$yes	= $yes?$yes:__("Yes", "zm_sh");
+		$no		= $no?$no:__("No", "zm_sh");
+		$name	= "zm_shbt_fld[show_in][$id]";
+		$name_1	= "zm_shbt_fld[$id]";
+		$chk	= $this->options['show_in'][$id]?'checked="checked"':'';
+		$circle	= $selected===false?checked($this->options[$id], 'circle', false):$selected;
+		$square	= $selected===false?checked($this->options[$id], 'square', false):$selected;
+		if($chk and !$circle and !$square)
+			$circle = 'checked="checked"';
+		echo "<div class='row toggle'>";
 			echo "<label for='$id'>$label</label>";
-			echo "<input name='$name' id='$id' class='$class' $chk type='checkbox' value='1' data-on='$yes' data-off='$no'/>";
+			echo "<input id='$id' $chk type='checkbox' name='{$name}' value='1'/>";
+			echo "<span class='for_label'>";
+				echo "<label for='$id' class='$class' data-on='$yes' data-off='$no'></label>";
+				
+				echo "<div class='row show_on' style='margin-top:50px'>";
+					echo "<input type='radio' id='$id-circle' name='$name_1' value='circle' $circle >";
+					echo "<label for='$id-circle'><img src='". zm_sh_url_assets_img . $id . "-circle.png'></label>";
+					
+					echo "<input type='radio' id='$id-square' name='$name_1' value='square' $square >";
+					echo "<label for='$id-square'><img src='". zm_sh_url_assets_img . $id . "-square.png'></label>";
+				echo "</div>";
+			echo "</span>";
+			
 		echo "</div>";
 	}
 	

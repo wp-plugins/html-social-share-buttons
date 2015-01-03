@@ -49,10 +49,10 @@ class zm_sh_settings{
             <?php $zm_form->text("title", "Enter a Title");?>
  
             <?php $zm_form->select_iconset("iconset", "Select Button Style");?>
-            <?php $zm_form->checkbox("show_left", "Show on Left Side");?>
-            <?php $zm_form->checkbox("show_right", "Show on Right Side");?>
-            <?php $zm_form->checkbox("show_before_post", "Show Before Post");?>
-            <?php $zm_form->checkbox("show_after_post", "Show After Post");?>
+            <?php $zm_form->show_on("show_left", "Show on Left Side");?>
+            <?php $zm_form->show_on("show_right", "Show on Right Side");?>
+            <?php $zm_form->show_on("show_before_post", "Show Before Post");?>
+            <?php $zm_form->show_on("show_after_post", "Show After Post");?>
             
             <?php $zm_form->icon_fields("Select Buttons", "Enable");?>
             
@@ -99,6 +99,8 @@ class zm_sh_settings{
             });
 			
 			</script>
+            <div class="row">
+            </div>
             <p class="desin_by">
             	Designed By Hakan Ertan <a href="https://hakan-ertan.com/">www.hakan-ertan.com</a>
             </p>
@@ -110,8 +112,12 @@ class zm_sh_settings{
                  </p>
             </div>
         </div>
+        <!--<pre>
         <?php
-		//print_r($this->options);
+		print_r($this->options);
+		?>
+        </pre>-->
+        <?php
 	}
 	
 	
@@ -121,14 +127,9 @@ class zm_sh_settings{
 	
 	function sanitize( $input ){
         $new_input = array();
+		$keep_as_is = array( "title", "iconset", "icons", "show_in", "show_left", "show_right", "show_before_post", "show_after_post", );
 		foreach($input as $key =>$value){
-			if( $key == "iconset" )
-				$new_input[$key] = $value;
-			elseif( $key == "icons" )
-				$new_input[$key] = $value;
-			elseif( $key == "show_on" )
-				$new_input[$key] = $value;
-			elseif( $key == "title" )
+			if( in_array($key, $keep_as_is))
 				$new_input[$key] = $value;
 			elseif(isset( $input[$key] ) and $input[$key] )
 				$new_input[$key] = true;
