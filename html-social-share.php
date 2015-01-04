@@ -187,10 +187,10 @@ class zm_social_share{
 	function filter_the_content($content){
 		$options = $this->options;
 		$options['class'] = "in_widget";
-		if( is_singular() && $options['show_before_post']) {
+		if( is_singular() && $options['show_in']['show_before_post']) {
 			$content = $this->zm_sh_btn($options).$content;
 		}
-		if( is_singular() && $options['show_after_post']) {
+		if( is_singular() && $options['show_in']['show_after_post']) {
 			$content = $content . $this->zm_sh_btn($options);
 		}
 		return $content;
