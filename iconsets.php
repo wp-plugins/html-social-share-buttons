@@ -5,6 +5,7 @@ class zm_sh_iconset{
 	public $iconset;
 	public $iconsets;
 	public $options;
+	public $curr_iconset;
 	
 	static function getInstance() {
 		static $instance;
@@ -27,13 +28,24 @@ class zm_sh_iconset{
 	}
 	
 	function get_current_iconset(){
-		$iconset = $this->options['iconset'];
+		$iconset = $this->curr_iconset?$this->curr_iconset:$this->options['iconset'];
 		$this->iconset = $this->get_iconset($iconset);
 		return $this->iconset;
 	}
 	
+	function set_current_iconset($iconset_name){
+		$this->curr_iconset = $iconset_name;
+		return true;
+	}
+	
 	function get_iconset($iconset = "default"){
+		$this->curr_iconset = $iconset;
 		return $this->iconsets[$iconset];
+	}
+	
+	function get_iconset_types($iconset = "default"){
+		$this->curr_iconset = $iconset;
+		return $this->iconsets[$iconset]['types'];
 	}
 	
 	function get_iconsets(){
@@ -65,7 +77,16 @@ function zm_sh_get_current_iconset(){
 	$obj_iconset = zm_sh_iconset::getInstance();
 	return $obj_iconset->get_current_iconset();
 }
+function zm_sh_set_current_iconset($iconset_name){
+	$obj_iconset = zm_sh_iconset::getInstance();
+	return $obj_iconset->set_current_iconset($iconset_name);
+}
 
+function zm_sh_get_iconset_types($iconset_name=""){
+	$iconset_name = $iconset_name?$iconset_name:"default";
+	$obj_iconset = zm_sh_iconset::getInstance();
+	return $obj_iconset->get_iconset_types($iconset_name);
+}
 function zm_sh_get_iconset($iconset = "default"){
 	$obj_iconset = zm_sh_iconset::getInstance();
 	return $obj_iconset->get_iconset($iconset);

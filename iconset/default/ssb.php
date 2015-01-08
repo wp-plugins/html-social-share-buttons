@@ -14,6 +14,7 @@ class	zm_sh_iconset_default{
 		$iconset['dir'] = plugin_dir_path( __FILE__ );
 		$iconset['url'] = plugins_url( "/", __FILE__ );
 		$iconset['stylesheet'] = "style.css";
+		$iconset['types'] = array("square");
 		$iconset['icons'] = array(
 				'facebook'=>array(
 								'id' => 'facebook',

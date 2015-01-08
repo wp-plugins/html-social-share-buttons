@@ -1,7 +1,7 @@
 <?php
 
-new		zm_sh_iconset_flat;
-class	zm_sh_iconset_flat{
+new		zm_sh_iconset_long_shadows;
+class	zm_sh_iconset_long_shadows{
 	
 	function __construct(){
 		add_action("zm_sh_add_iconset", array($this,"add_iconset"), 1);
@@ -9,13 +9,13 @@ class	zm_sh_iconset_flat{
 	
 	function add_iconset(){
 		$iconset = array();
-		$iconset['id'] = 'flat';
-		$iconset['name'] = 'Flat';
+		$iconset['id'] = 'long-shadows';
+		$iconset['name'] = 'long-shadows';
 		$iconset['dir'] = plugin_dir_path( __FILE__ );
 		$iconset['url'] = plugins_url( "/", __FILE__ );
 		$iconset['stylesheet'] = "style.css";
 		$iconset['preview_img'] = "preview.png";
-		$iconset['types'] = array("square", "circle");
+		$iconset['types'] = array("rounded", "circle");
 		$iconset['icons'] = array(
 				'facebook'=>array(
 								'id' => 'facebook',

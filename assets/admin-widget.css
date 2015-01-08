@@ -1,50 +1,95 @@
-
-@charset "utf-8";
-/* CSS Document */
-.toggle-check{
+.show_on input{display:none !important;}
+.row{
+	min-height:40px;
+	margin-top:20px;
 }
-.toggle-check input {
+.row:before, .row:after {
+	content: " ";
+	display: table;
+	clear: both;
+}
+.row label, .row input {
+	float: left;
+}
+.row label {
+	float: left;
+	width: 60%;
+	font-size: 16px;
+	font-weight:bold;
+}
+input[type=checkbox]{
+	display:none;
+}
+input+.for_label .toggle-check {
+	border:none!important;
+	width: 90px;
+	padding: 2px;
+	height: 35px;
+	outline: none!important;
+	display: block;
+	cursor: pointer;
+	position: relative;
+	-webkit-user-select: none;
+		-moz-user-select:none;
+		-ms-user-select: none;
+			user-select: none;
+}
+input+.for_label .toggle-check:after {
+	display: block;
 	position: absolute;
-	margin-left: -9999px;
-	visibility: hidden;
+	top: -10px;
+	left: 0;
+	bottom: 10px;
+	right: 0;
+	color: #fff;
+	font-family: "Roboto Slab", serif;
+	font-size: 18px;
+	line-height: 35px;
+	border-radius: 30px;
+	padding-left: 10px;
+	background: url(setting.png);
+	background-repeat: no-repeat;
+	padding-left: 10px;
+	padding-right: 10px;
+	-webkit-transition: all 0.5s;
+	transition: all 0.5s;
 }
-
-.toggle-check label {
-	
-	position:relative;
-  padding: 2px;
-  width: 80px;
-  height: 30px;
-  background-color: #dddddd;
-  border-radius: 60px;
- display: block;
+.get_shortcode{margin-left:20px !important;}
+input+.for_label .toggle-check:after {
+	background-color: #888888;
+	content: attr(data-off);
+	background-position: 0%;
+	text-align: right;
 }
-.toggle-check label:before,
-.toggle-check label:after {
- display: block;
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  bottom: 1px;
-  content: "";
+.wp-core-ui .button, .wp-core-ui .button-primary, .wp-core-ui .button-secondary {
+  font-size: 14px !important;
 }
-.toggle-check label:before {
-  right: 1px;
-  background-color: #f1f1f1;
-  border-radius: 60px;
-  transition: background 0.4s;
+input:checked+.for_label .toggle-check:after {
+	background-color: #0096d7;
+	content: attr(data-on);
+	background-position: 100%;
+	text-align: left;
 }
-.toggle-check label:after {
-  width: 33px;
-  background-color: #fff;
-  border-radius: 100%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  transition: margin 0.4s;
+input+.for_label .show_on{
+	transition: 1s all;
+	overflow: hidden;
+	height: 0px;
+	margin: 0px;
+	min-height: 0px;
 }
-
-.toggle-check input:checked + label:before {
-   background-color: #8ce196;
+input:checked+.for_label .show_on{
+	height: 279px;
+	padding-top: 10px;
+	padding-left:5px;
 }
-.toggle-check input:checked + label:after {
- margin-left: 50px;
+.show_on label {
+	width: auto;
+	margin-right: 30px;
+	border: 1px solid rgba(176, 168, 168, 0.71);
+}
+.show_on input[type="radio"]:checked + label, .show_on input[type="radio"] + label:hover {
+	border-color: rgb(212, 228, 119);
+	-webkit-box-shadow: 0px 0px 7px 0px rgba(55, 139, 215, 0.9);
+-moz-box-shadow:    0px 0px 7px 0px rgba(55, 139, 215, 0.9);
+box-shadow:         0px 0px 7px 0px rgba(55, 139, 215, 0.9);
 }

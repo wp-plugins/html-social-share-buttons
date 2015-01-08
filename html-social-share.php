@@ -188,9 +188,11 @@ class zm_social_share{
 		$options = $this->options;
 		$options['class'] = "in_widget";
 		if( is_singular() && $options['show_in']['show_before_post']) {
+			$options['show_on'] = 'show_before_post';
 			$content = $this->zm_sh_btn($options).$content;
 		}
 		if( is_singular() && $options['show_in']['show_after_post']) {
+			$options['show_on'] = 'show_after_post';
 			$content = $content . $this->zm_sh_btn($options);
 		}
 		return $content;
@@ -200,6 +202,7 @@ class zm_social_share{
 		$atts = shortcode_atts(array(
 									'iconset'	=> "",
 									'icons'		=> "",
+									'iconset_type'		=> "",
 									'class'		=> "in_widget",
 								),
 								$atts,
@@ -219,11 +222,14 @@ class zm_social_share{
 	//print styles and floating buttons 
 	function footer(){
 		$options = $this->options;
-		if($options['show_left']){
-			echo $this->zm_sh_btn();
+		if($options['show_in']['show_left']){
+			$options['class'] = 'left';
+			$options['show_on'] = 'show_left';
+			echo $this->zm_sh_btn($options);
 		}
-		if($options['show_right']){
+		if($options['show_in']['show_right']){
 			$options['class'] = 'right';
+			$options['show_on'] = 'show_right';
 			echo $this->zm_sh_btn($options);
 		}
 		
@@ -248,8 +254,8 @@ class zm_social_share{
 		foreach($this->printed_icons as $id=>$iconset){
 			extract($iconset);
 			echo "
-			.zmshbt.$iconset_id .$class {
-					background-image:url('$iconset_url" . "$image');
+			.zmshbt.$iconset_id.$iconset_type .$class {
+					background-image:url('$iconset_url$iconset_type/$image');
 			}
 			";
 		}
@@ -258,33 +264,32 @@ class zm_social_share{
 	
 	//the button generator function
 	function zm_sh_btn($instance = ""){
-		global $zm_sh_title,$imageurl;
-		$permalink = $this->curentPageURL();
-		
 		$options = $instance?$instance:$this->options;
 		
-		$class = $options['class']?$options['class']:"left";
+		$__class = $options['class']?$options['class']:"left";
 		$iconset_id = $options['iconset'];
 		$selected_icons = $options['icons'];
 		
 		$iconset = zm_sh_get_iconset($iconset_id);
 		$this->stylesheets[$iconset['id']] = $iconset['url'] . $iconset['stylesheet'];
 		$icons = $iconset['icons'];
+		$iconset_type = $options['iconset_type']?$options['iconset_type']:$options[$options['show_on']];
 		//print_r($options);
-		if($options['show_on'] == 'after_post')
+		if($options['show_on'] == 'show_after_post' or $options['show_on'] == 'show_before_post')
 			$output = "<h3>".$options['title']."</h3>";
-        $output .= "<div class='zmshbt $class $iconset_id'>";
-        
+        $output .= "<div class='zmshbt $__class $iconset_id $iconset_type'>";
+        if(is_array($selected_icons))
 			foreach($selected_icons as $id => $ico){
 				$icon = $icons[$id];
 				if(!$icon) continue;
 				extract($icon);
-				$icon['iconset_id'] = $iconset['id'];
-				$icon['iconset_url'] = $iconset['url'];
+				$icon['iconset_id']		= $iconset['id'];
+				$icon['iconset_url']	= $iconset['url'];
+				$icon['iconset_type']	= $iconset_type;
 				if(!array_key_exists($id, (array)$selected_icons) and !in_array($id, (array)$selected_icons)) continue;
-				$this->printed_icons[$iconset['id']."_".$id] = $icon;
+				$this->printed_icons[$iconset['id']."_$iconset_type\0_".$id] = $icon;
 				$url= apply_filters("zm_sh_placeholder", $url);
-				$output .= "<a id='$id' class='$class'	target='_blank' href='$url'></a>\n";
+				$output .= "<a class='$class'	target='_blank' href='$url'></a>\n";
 			}
         $output .= "</div>";
 		return $output;
