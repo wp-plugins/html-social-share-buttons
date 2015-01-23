@@ -12,8 +12,9 @@ Stable tag: 2.0.4
 Are you searching for a lightweight sharing plugin? You are in right place. This pluign not use JavaScript.
  
 == Description ==
-For live demo and question <a target="_blank" href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">Live demo</a>.<br/>
-            	Designed By Hakan Ertan <a target="_blank" href="https://hakan-ertan.com/" rel="follow">www.hakan-ertan.com</a>
+For live demo and question <a target="_blank" href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">Live demo</a>.
+
+Designed By Hakan Ertan <a target="_blank" href="https://www.tonicons.com/" rel="follow">www.tonicons.com</a>
 
 <strong>New feature:</strong><br />
 <ul>

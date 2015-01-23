@@ -106,7 +106,7 @@ class zm_sh_settings{
 			
 			</script>
             <p class="desin_by">
-            	Designed By Hakan Ertan <a target="_blank" href="https://hakan-ertan.com/">www.hakan-ertan.com</a>
+            	Designed By Hakan Ertan <a target="_blank" href="https://www.tonicons.com/" rel="follow">www.tonicons.com</a>
             </p>
 			</form>
             <?php add_thickbox(); ?>
