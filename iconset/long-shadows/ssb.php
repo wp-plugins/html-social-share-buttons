@@ -15,55 +15,55 @@ class	zm_sh_iconset_long_shadows{
 		$iconset['url'] = plugins_url( "/", __FILE__ );
 		$iconset['stylesheet'] = "style.css";
 		$iconset['preview_img'] = "preview.png";
-		$iconset['types'] = array("rounded", "circle");
+		$iconset['types'] = array("square", "circle");
 		$iconset['icons'] = array(
 				'facebook'=>array(
 								'id' => 'facebook',
 								'name' => "Facebook",
 								'class' => 'facebook',
-								'image' => 'Facebook.png',
+								'image' => 'facebook.png',
 								'url' => "http://www.facebook.com/sharer.php?u=%%permalink%%&amp;t=%%title%%",
 							),
 				'twitter'=>array(
 								'id' => 'twitter',
 								'name' => "Twitter",
 								'class' => 'twitter',
-								'image' => 'Twitter.png',
+								'image' => 'twitter.png',
 								'url' => "http://twitter.com/share?url=%%permalink%%&amp;text=%%title%%",
 							),
 				'linkedin'=>array(
 								'id' => 'linkedin',
 								'name' => "Linkedin",
 								'class' => 'linkedin',
-								'image' => 'Linkedin.png',
+								'image' => 'linkedin.png',
 								'url' => "http://www.linkedin.com/shareArticle?mini=true&url=%%permalink%%&amp;title=%%title%%",
 							),
 				'googlepluse'=>array(
 								'id' => 'googlepluse',
 								'name' => "Google Plus",
 								'class' => 'googlepluse',
-								'image' => 'Google Plus.png',
+								'image' => 'google_+.png',
 								'url' => "https://plus.google.com/share?url=%%permalink%%",
 							),
 				'bookmark'=>array(
 								'id' => 'bookmark',
 								'name' => "Google Bookmarks",
 								'class' => 'bookmark',
-								'image' => 'RSS.png',
+								'image' => 'rss.png',
 								'url' => "http://www.google.com/bookmarks/mark?op=edit&bkmk=%%permalink%%&amp;title=%%title%%&annotation=%%description%%",
 							),
 				'pinterest'=>array(
 								'id' => 'pinterest',
 								'name' => "Pinterest",
 								'class' => 'pinterest',
-								'image' => 'Pinterest.png',
+								'image' => 'pinterest.png',
 								'url' => "http://pinterest.com/pin/create/button/?url=%%permalink%%&amp;media=%%imageurl%%&amp;description=%%title%%",
 							),
 				'mail'=>array(
 								'id' => 'mail',
 								'name' => "Email",
 								'class' => 'mail',
-								'image' => 'Mail.png',
+								'image' => 'mail.png',
 								'url' => "mailto:?subject=I wanted you to see this site&amp;body=This is about %%title%% %%permalink%%",
 							),
 				);
