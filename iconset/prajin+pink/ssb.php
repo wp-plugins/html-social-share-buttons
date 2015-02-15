@@ -15,7 +15,7 @@ class	zm_sh_iconset_Prajin{
 		$iconset['dir'] = plugin_dir_path( __FILE__ );
 		$iconset['url'] = plugins_url( "/", __FILE__ );
 		$iconset['stylesheet'] = "style.css";
-		//$iconset['preview_img'] = "preview.png";
+		$iconset['preview_img'] = "preview.png";
 		$iconset['types'] = array("square", "circle");
 		$iconset['icons'] = array(
 				'facebook'=>array(

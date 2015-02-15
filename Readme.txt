@@ -7,7 +7,7 @@ Requires at least: 3.0.0
 Tested up to: 4.0.1
 Version: 2.0.4
 License: GPLv2
-Stable tag: 2.0.4
+Stable tag: 2.0.5
 
 Are you searching for a lightweight sharing plugin? You are in right place. This pluign not use JavaScript.
  
@@ -18,6 +18,7 @@ Designed By Hakan Ertan <a target="_blank" href="https://www.tonicons.com/" rel=
 
 <strong>New feature:</strong><br />
 <ul>
+	<li><strong>Social tracker:</strong> Google Social analytics integrated. Now you can track your social shares.</li>
 	<li>New icons</li>
 	<li>Visual composer support</li>
 	<li>Short code generator</li>

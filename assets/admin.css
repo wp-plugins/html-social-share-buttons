@@ -113,10 +113,10 @@ input:checked+.for_label .show_on {
 	border: 1px solid rgba(176, 168, 168, 0.71);
 }
 .show_on input[type="radio"]:checked + label, .show_on input[type="radio"] + label:hover {
-	border-color: rgb(212, 228, 119);
+	border-color: rgb(186, 186, 186);
 	-webkit-box-shadow: 0px 0px 7px 0px rgba(55, 139, 215, 0.9);
-	   -moz-box-shadow: 0px 0px 7px 0px rgba(55, 139, 215, 0.9);
-			box-shadow: 0px 0px 7px 0px rgba(55, 139, 215, 0.9);
+	-moz-box-shadow: 0px 0px 7px 0px rgba(55, 139, 215, 0.9);
+	box-shadow: 0px 0px 7px 0px rgba(194, 194, 194, 0.9);
 }
 .button {
 	vertical-align: baseline;

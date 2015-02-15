@@ -21,7 +21,11 @@ class zm_sh_settings{
 	//registering scripts and styles for admin
 	function admin_scripts($hook) {
 		if ( 'toplevel_page_zm_shbt_opt' == $hook ) {
-			wp_enqueue_style( 'zm_sh_admin_styles_scripts', plugin_dir_url( __FILE__ ) . 'assets/admin.css' );
+			wp_enqueue_style( 'zm_sh_admin_styles',  plugin_dir_url( __FILE__ ) . 'assets/admin.css' );
+			wp_enqueue_script('zm_sh_admin_scripts', plugin_dir_url( __FILE__ ) . 'assets/admin.js'  );
+			wp_localize_script( 'zm_sh_admin_scripts', 'zm_sh_root_url',		zm_sh_url );
+			wp_localize_script( 'zm_sh_admin_scripts', 'zm_sh_url_assets',		zm_sh_url_assets );
+			wp_localize_script( 'zm_sh_admin_scripts', 'zm_sh_url_assets_img',	zm_sh_url_assets_img );
 		}
 		elseif ( 'widgets.php' == $hook ) {
 			wp_enqueue_style( 'zm_sh_admin_styles_scripts', plugin_dir_url( __FILE__ ) . 'assets/admin-widget.css' );
@@ -48,7 +52,7 @@ class zm_sh_settings{
             <?php settings_fields( 'zm_shbt_opt' ); ?>
             <h3>Select theme and Icon Style</h3>
             <?php $zm_form->text("title", "Enter a Title");?>
- 
+ 			<?php $zm_form->checkbox('g_analytics', 'Google Social analytics', $name = '',null,'','','', "Be sure you have google analytics already in page" );?>
             <?php $zm_form->select_iconset("iconset", "Select Button Style");?>
             <?php $zm_form->show_on("show_left", "Show on Left Side");?>
             <?php $zm_form->show_on("show_right", "Show on Right Side");?>

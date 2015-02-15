@@ -18,10 +18,11 @@ class zm_form{
 	}
 	
 	
-	function checkbox($id, $label, $name = '', $selected=false, $class = 'toggle-check', $yes = "", $no = ""){
+	function checkbox($id, $label, $name = '', $selected=null, $class = '', $yes = "", $no = "",$description=''){
 		$yes = $yes?$yes:__("Yes", "zm_sh");
 		$no = $no?$no:__("No", "zm_sh");
-		$chk = $selected===false?checked($this->options[$id], true, false):$selected;
+		$class	= $class?$class:'toggle-check';
+		$chk = $selected===null?checked($this->options[$id], true, false):$selected;
 		$name = $name ? $name : "zm_shbt_fld[$id]";
 		echo "<div class='row'>";
 			echo "<label for='$id'>$label</label>";
@@ -30,6 +31,8 @@ class zm_form{
 				echo "<label for='$id' class='$class' data-on='$yes' data-off='$no'></label>";
 			echo "</span>";
 		echo "</div>";
+			if($description)
+			echo "<p>$description</p>";
 	}
 	
 	function show_on($id, $label, $selected=false, $class = 'toggle-check', $yes = "", $no = ""){
@@ -67,7 +70,7 @@ class zm_form{
 		echo "</div>";
 		foreach($icons as $name=>$id){
 			$chk = checked($this->options['icons'][$id], true, false);
-			$this->checkbox('icon_'.$id, $label_prefix.' '.$name, "zm_shbt_fld[icons][$id]", $chk, $class, $yes, $no, $id);
+			$this->checkbox('icon_'.$id, $label_prefix.' '.$name, "zm_shbt_fld[icons][$id]", $chk, $class, $yes, $no);
 		}
 	}
 	
@@ -100,7 +103,7 @@ class zm_form{
 	function _select_iconset($id, $label, $items, $name=false, $selected=false){
 		$name = $name ? $name : "zm_shbt_fld[$id]";
 		$selected = $selected ? $selected : $this->options[$id];
-		$iconset = zm_sh_get_current_iconset();
+		//$iconset = zm_sh_get_iconset($selected);
 		echo "<div class='row'>";
 			echo "<label for='$id'>$label</label>";
 			echo "<select id='$id' name='$name'>";
@@ -111,7 +114,7 @@ class zm_form{
 			echo "</select>";
 			?>
 			<div class="button-style-img">
-				<img src="<?php echo $iconset['url'].$iconset['preview_img']; ?>" alt="" class="" />
+				<img src="<?php echo zm_get_iconset_preview($selected); ?>" alt="" class="" />
 			</div>
 			<?php
 		echo "</div>";
