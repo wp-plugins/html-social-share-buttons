@@ -18,7 +18,7 @@ Designed By Hakan Ertan <a target="_blank" href="https://www.tonicons.com/" rel=
 
 <strong>New feature:</strong><br />
 <ul>
-	<li><strong>Social tracker:</strong> Google Social analytics integrated. Now you can track your social shares.</li>
+	<li><strong>Social tracker:</strong> Google Social analytics integrated. Now you can track your social shares. Need to enable on settings page.</li>
 	<li>New icons</li>
 	<li>Visual composer support</li>
 	<li>Short code generator</li>
