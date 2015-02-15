@@ -1,0 +1,55 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+.zmshbt.long-shadows{
+	
+}
+.zmshbt.long-shadows.left, .zmshbt.long-shadows.right{
+	top: 30%;
+	z-index:9999;
+	position: fixed;
+	
+	-moz-transition: all .25s linear .5s;
+	-webkit-transition: all .25s linear .5s;
+	transition: all .25s linear .5s;
+	
+}
+
+.zmshbt.long-shadows.left {
+	left: -25px;
+}
+.zmshbt.long-shadows.left:hover {
+	left: 0;
+}
+.zmshbt.long-shadows.right {
+	right: -25px;
+}
+.zmshbt.long-shadows.right:hover {
+	right: 0;
+}
+
+.zmshbt.long-shadows.in_widget a{
+	display:inline-block;
+	margin: 5px;
+}
+.zmshbt.long-shadows a {
+	width: 32px;
+	height: 32px;
+	display: block;
+	background-size:cover;
+	margin: 10px;
+	
+	-moz-transition: all .25s linear;
+	-webkit-transition: all .25s linear;
+	transition: all .25s linear;
+}
+
+.zmshbt.long-shadows a:hover, .zmshbt.long-shadows a:active{
+	-moz-transform: scale(1.5);
+	-ms-transform: scale(1.5);
+	-o-transform: scale(1.5);
+	-webkit-transform: scale(1.5);
+	transform: scale(1.5)
+}
