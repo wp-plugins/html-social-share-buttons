@@ -19,8 +19,8 @@ Designed By Hakan Ertan <a target="_blank" href="https://www.tonicons.com/" rel=
 <strong>New feature:</strong><br />
 <ul>
 	<li><strong>Social tracker:</strong> Google Social analytics integrated. Now you can track your social shares. Need to enable on settings page.</li>
-	<li>New icons</li>
-	<li>Visual composer support</li>
+	<li>2 New <strong>Premium icons</strong> set added with different styles.</li>
+	<li>Visual composer support. You will be able to use in visual composer.</li>
 	<li>Short code generator</li>
 	<li>Opiton to add bottom of post.</li>
 	<li>PHP code generator to use in theme</li>
