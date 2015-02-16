@@ -42,7 +42,7 @@ Designed By Hakan Ertan <a target="_blank" href="https://www.tonicons.com/" rel=
 </ul>
 Added ability to pickup first image from post for use as thumbnail. ( NEW )
 
-<strong>FEATURE::</strong>
+<strong>Supports::</strong>
 
 
 <ol>
@@ -53,6 +53,7 @@ Added ability to pickup first image from post for use as thumbnail. ( NEW )
 	<li>Bookmark with Google Bookmark.</li>
 	<li>Share with Email.</li>
 	<li>Share with Pinterest</li>
+	<li>Your asked item will be added ASAP</li>
 </ol>
 
 == Installation ==
