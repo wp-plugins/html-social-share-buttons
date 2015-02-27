@@ -18,17 +18,17 @@ class zm_form{
 	}
 	
 	
-	function checkbox($id, $label, $name = '', $selected=null, $class = '', $yes = "", $no = "",$description=''){
+	function checkbox($id, $label, $name = '', $selected=null, $class = '', $yes = "", $no = "",$description='', $id_prefix = ''){
 		$yes = $yes?$yes:__("Yes", "zm_sh");
 		$no = $no?$no:__("No", "zm_sh");
 		$class	= $class?$class:'toggle-check';
 		$chk = $selected===null?checked($this->options[$id], true, false):$selected;
 		$name = $name ? $name : "zm_shbt_fld[$id]";
 		echo "<div class='row'>";
-			echo "<label for='$id'>$label</label>";
-			echo "<input name='$name' id='$id' $chk type='checkbox' value='1' data-id='$id' />";
+			echo "<label for='$id_prefix$id'>$label</label>";
+			echo "<input name='$name' id='$id_prefix$id' $chk type='checkbox' value='1' data-id='$id' />";
 			echo "<span class='for_label'>";
-				echo "<label for='$id' class='$class' data-on='$yes' data-off='$no'></label>";
+				echo "<label for='$id_prefix$id' class='$class' data-on='$yes' data-off='$no'></label>";
 			echo "</span>";
 		echo "</div>";
 			if($description)
@@ -70,7 +70,7 @@ class zm_form{
 		echo "</div>";
 		foreach($icons as $name=>$id){
 			$chk = checked($this->options['icons'][$id], true, false);
-			$this->checkbox('icon_'.$id, $label_prefix.' '.$name, "zm_shbt_fld[icons][$id]", $chk, $class, $yes, $no);
+			$this->checkbox($id, $label_prefix.' '.$name, "zm_shbt_fld[icons][$id]", $chk, $class, $yes, $no, '', 'icon_');
 		}
 	}
 	

@@ -43,6 +43,9 @@
 	-webkit-transition: all .25s linear;
 	transition: all .25s linear;
 }
+.zmshbt.Prajin.circle a {
+	height: 41px;
+}
 .zmshbt.Prajin a:hover, .zmshbt.Prajin a:active {
 	-moz-transform: scale(1.5);
 	-ms-transform: scale(1.5);

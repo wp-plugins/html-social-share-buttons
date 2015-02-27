@@ -4,15 +4,15 @@ Author: Md. Alimuzzaman Alim
 Donate link: none
 Tags: Social-share, Social-share-button, Social, share, button, widget, translation ready, facebook share, google plus share, linkedin share, social media share, social sharing, Social-share-button, twitter share.
 Requires at least: 3.0.0
-Tested up to: 4.0.1
-Version: 2.0.4
+Tested up to: 4.1.1
+Version: 2.0.6
 License: GPLv2
-Stable tag: 2.0.5
+Stable tag: 2.0.6
 
 Are you searching for a lightweight sharing plugin? You are in right place. This pluign not use JavaScript.
  
 == Description ==
-For live demo and question <a target="_blank" href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">Live demo</a>.
+For live demo <a target="_blank" href="http://www.zm-tech.net/wp-plugins/html-social-share-buttons/" rel="follow">Live demo</a>.
 
 Designed By Hakan Ertan <a target="_blank" href="https://www.tonicons.com/" rel="follow">www.tonicons.com</a>
 
