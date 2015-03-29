@@ -140,8 +140,8 @@ class zm_sh_settings{
         </div>
         <pre>
         <?php
-		print_r($this->options);
-		print_r(zm_sh_get_iconset($this->options['iconset']));
+		//print_r($this->options);
+		//print_r(zm_sh_get_iconset($this->options['iconset']));
 		?>
         </pre>
         <?php
