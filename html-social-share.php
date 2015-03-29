@@ -4,7 +4,7 @@ Plugin Name: Html Social share buttons
 Plugin URI: http://wordpress.org/plugins/html-social-share-buttons/
 Description: Html share button. It show lite share button only with html. It's not using any javascript whats anothers do. It's load only extra 10-11 kb total on your site.
 Author: Alimuzzaman Alim
-Version: 2.0.6.1
+Version: 2.0.6.2
 Author URI: http://www.zm-tech.net
 Text Domain: zm-sh
 Domain Path: /languages
@@ -77,6 +77,7 @@ function zm_sh_btn($options){
 	$zm_sh = zm_social_share::getInstance();
 	$zm_sh->zm_sh_btn($options);
 }
+
 class zm_social_share{
 	
 	public $options;
@@ -98,7 +99,7 @@ class zm_social_share{
 	protected function __construct(){
 		global $zm_sh_default_options;
 		// getting options form database
-		$this->options = get_option("zm_shbt_fld", $zm_sh_default_options);
+		$this->options	= get_option("zm_shbt_fld", $zm_sh_default_options);
 		// getting the current iconset
 		$this->iconset = zm_sh_get_current_iconset();
 		
@@ -114,10 +115,23 @@ class zm_social_share{
 		
 		add_action('plugins_loaded', array($this, 'ap_action_init'));
         add_action( 'vc_before_init', array( $this, 'integrateWithVC' ) );
+		add_action('wp', array($this, 'wp'));
 
 	}
 	
+	function wp(){
+		global $post;
+		echo $post->ID;
+		//print_r($post);
+		$excludes		= $this->options['excludes'];
+		$excludes		= (array) explode(',', $excludes);
+		//print_r($excludes);
+		if(in_array($post->ID, $excludes))
+			$this->excluded	= true;
+	}
+	
 	public function integrateWithVC() {
+		if($this->excluded == true) return;
  		$iconsets = zm_sh_get_iconset_list();
 		$iconsets = array_flip($iconsets);
 		
@@ -174,6 +188,7 @@ class zm_social_share{
     }
     
 	function ap_action_init(){
+		if($this->excluded == true) return;
 		// Localization
 		load_plugin_textdomain('zm-sh', false, dirname(plugin_basename(__FILE__)) . '/languages' );
 		
@@ -199,6 +214,7 @@ class zm_social_share{
 	}
 	
 	function shortcode_cb($atts){
+		if($this->excluded == true) return;
 		$atts = shortcode_atts(array(
 									'iconset'	=> "",
 									'icons'		=> "",
@@ -216,11 +232,13 @@ class zm_social_share{
 	
 	//registering widget
 	function register_widgets() {
+		if($this->excluded == true) return;
 		register_widget( 'zm_html_share_widget' );
 	}
 	
 	//print styles and floating buttons 
 	function footer(){
+		if($this->excluded == true) return;
 		$options = $this->options;
 		
 		if($options['g_analytics']){
@@ -289,6 +307,7 @@ class zm_social_share{
 	
 	//the button generator function
 	function zm_sh_btn($instance = ""){
+		if($this->excluded == true) return;
 		$options = $instance?$instance:$this->options;
 		
 		$__class = $options['class']?$options['class']:"left";

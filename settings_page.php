@@ -52,6 +52,7 @@ class zm_sh_settings{
             <?php settings_fields( 'zm_shbt_opt' ); ?>
             <h3>Select theme and Icon Style</h3>
             <?php $zm_form->text("title", "Enter a Title");?>
+            <?php $zm_form->textArea("excludes", "Exclude");?>
  			<?php $zm_form->checkbox('g_analytics', 'Google Social analytics', $name = '',null,'','','', "Be sure you have google analytics already in page" );?>
             <?php $zm_form->select_iconset("iconset", "Select Button Style");?>
             <?php $zm_form->show_on("show_left", "Show on Left Side");?>
@@ -139,8 +140,8 @@ class zm_sh_settings{
         </div>
         <pre>
         <?php
-		//print_r($this->options);
-		//print_r(zm_sh_get_iconset($this->options['iconset']));
+		print_r($this->options);
+		print_r(zm_sh_get_iconset($this->options['iconset']));
 		?>
         </pre>
         <?php
@@ -152,7 +153,7 @@ class zm_sh_settings{
 	
 	function sanitize( $input ){
         $new_input = array(); //get_option("zm_shbt_fld", $zm_sh_default_options);
-		$keep_as_is = array( "title", "iconset", "icons", "show_in", "show_left", "show_right", "show_before_post", "show_after_post", );
+		$keep_as_is = array( "title", "excludes", "iconset", "icons", "show_in", "show_left", "show_right", "show_before_post", "show_after_post", );
 		
 		foreach($input as $key =>$value){
 			if( $key == "show_in")

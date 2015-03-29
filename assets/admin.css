@@ -155,3 +155,7 @@ input:checked+.for_label .show_on {
 	font-family: "Open Sans";
 	color: rgb(125, 125, 125);
 }
+
+#excludes{
+	height:100px;
+}

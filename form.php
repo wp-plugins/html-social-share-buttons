@@ -17,6 +17,15 @@ class zm_form{
 		echo "</div>";
 	}
 	
+	function textArea($id, $label, $name = false, $value = false){
+		$name	= $name		? $name		: "zm_shbt_fld[$id]";
+		$value	= $value	? $value	: $this->options[$id];
+		echo "<div class='row'>";
+			echo "<label for='$id' style='width:140px;line-height: 37px;'>$label</label>";
+			echo "<textarea type='text' id='$id' name='$name' style='width: 278px;background-color: #ffffff;border: 1.2px solid #B8B8B8;' placeholder='Exclude by Page ID, Page Title or Page Slug' >$value</textarea>";
+		echo "</div>";
+	}
+	
 	
 	function checkbox($id, $label, $name = '', $selected=null, $class = '', $yes = "", $no = "",$description='', $id_prefix = ''){
 		$yes = $yes?$yes:__("Yes", "zm_sh");
