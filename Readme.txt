@@ -5,9 +5,9 @@ Donate link: none
 Tags: Social-share, Social-share-button, Social, share, button, widget, translation ready, facebook share, google plus share, linkedin share, social media share, social sharing, Social-share-button, twitter share.
 Requires at least: 3.0.0
 Tested up to: 4.1.1
-Version: 2.0.6.2
+Version: 2.0.6.3
 License: GPLv2
-Stable tag: 2.0.7
+Stable tag: 2.0.6.3
 
 Are you searching for a lightweight sharing plugin? You are in right place. This pluign not use JavaScript.
  
@@ -18,6 +18,7 @@ Designed By Hakan Ertan <a target="_blank" href="https://www.tonicons.com/" rel=
 
 <strong>New feature:</strong><br />
 <ul>
+	<li>Exclude page/post by ID/slug</li>
 	<li><strong>Social tracker:</strong> Google Social analytics integrated. Now you can track your social shares. Need to enable on settings page.</li>
 	<li>2 New <strong>Premium icons</strong> set added with different styles.</li>
 	<li>Visual composer support. You will be able to use in visual composer.</li>
