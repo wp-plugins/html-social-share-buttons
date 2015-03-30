@@ -121,7 +121,7 @@ class zm_social_share{
 	
 	function wp(){
 		global $post;
-		echo $post->ID;
+		//echo $post->ID;
 		//print_r($post);
 		$excludes		= $this->options['excludes'];
 		$excludes		= (array) explode(',', $excludes);
