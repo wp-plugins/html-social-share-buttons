@@ -26,8 +26,6 @@ class zm_sh_filters{
 			$postid = url_to_postid( $url );
 			$post = get_post( $postid, "OBJECT" );
 			$first_img = '';
-			ob_start();
-			ob_end_clean();
 			$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', do_shortcode($post->post_content), $matches);
 			$imageurl = $matches[1][0];
 		}
