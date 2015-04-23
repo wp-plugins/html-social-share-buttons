@@ -4,10 +4,10 @@ Author: Md. Alimuzzaman Alim
 Donate link: none
 Tags: Social-share, Social-share-button, Social, share, button, widget, translation ready, facebook share, google plus share, linkedin share, social media share, social sharing, Social-share-button, twitter share.
 Requires at least: 3.0.0
-Tested up to: 4.1.1
+Tested up to: 4.2
 Version: 2.0.7
 License: GPLv2
-Stable tag: 2.0.7
+Stable tag: 2.1
 
 Are you searching for a lightweight sharing plugin? You are in right place. This pluign not use JavaScript.
  
