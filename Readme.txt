@@ -6,8 +6,8 @@ Tags: Social-share, Social-share-button, Social, share, button, widget, translat
 Requires at least: 3.0.0
 Tested up to: 4.2
 Version: 2.1.1
-License: GPLv2
 Stable tag: 2.1.1
+License: GPLv2
 
 Are you searching for a lightweight sharing plugin? You are in right place. This pluign not use JavaScript.
  
