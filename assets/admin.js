@@ -52,3 +52,33 @@ function on_iconset_chane(iconset){
 function change_preview_img(url){
 	jQuery('.button-style-img img').attr('src', url);
 }
+
+jQuery(document).ready(function($) {
+    $('#get_php, #get_short').click(function(event){
+		event.preventDefault();
+		$('#zm-sh-thick-box').show().find('.title').html($(this).attr('title'));
+		$('body').css({
+			overflow	: 'hidden',
+			height		: '100%'
+		});
+		
+	});
+	$('#zm-sh-thick-box .backdrop, #zm-sh-thick-box .close').click(function(){
+		$('#zm-sh-thick-box').hide();
+		$('body').css({
+			overflow	: 'initial',
+			height		: 'initial'
+		});
+	});
+});
+
+function zm_thick_box(id){
+	$(id).css({
+			display: block,
+	});
+	
+	
+	
+	
+	
+}

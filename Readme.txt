@@ -4,10 +4,10 @@ Author: Md. Alimuzzaman Alim
 Donate link: none
 Tags: Social-share, Social-share-button, Social, share, button, widget, translation ready, facebook share, google plus share, linkedin share, social media share, social sharing, Social-share-button, twitter share.
 Requires at least: 3.0.0
-Tested up to: 4.2
-Version: 2.0.7
+Tested up to: 4.2.2
+Version: 2.1.3
 License: GPLv2
-Stable tag: 2.1.2
+Stable tag: 2.1.3
 
 Are you searching for a lightweight sharing plugin? You are in right place. This pluign not use JavaScript.
  
@@ -18,6 +18,7 @@ Designed By Hakan Ertan <a target="_blank" href="https://www.tonicons.com/" rel=
 
 <strong>New feature:</strong><br />
 <ul>
+	<li>Desable icons on specific page. You can disable by the post edit screen or put the page ID on the setting page.</li>
 	<li>Exclude page/post by ID/slug</li>
 	<li><strong>Social tracker:</strong> Google Social analytics integrated. Now you can track your social shares. Need to enable on settings page.</li>
 	<li>2 New <strong>Premium icons</strong> set added with different styles.</li>
@@ -29,10 +30,6 @@ Designed By Hakan Ertan <a target="_blank" href="https://www.tonicons.com/" rel=
 	<li>3 Different button set.</li>
 	<li>You will be able to display share button horizontally on the left or right side.</li>
 	<li>You can develop add-on for this plugin with your custom icons.</li>
-</ul>
-
-<strong>Feature:</strong><br />
-<ul>
 	<li>Html CSS Social share buttons widget Plugin WordPress.</li>
 	<li>It show lite/simple share button only with html css.</li>
 	<li>It's does not using any JavaScript whats another do.</li>

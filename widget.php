@@ -1,4 +1,17 @@
 <?php
+
+
+
+//registering widget
+add_action( 'widgets_init', 'zm_sh_register_widgets' );
+function zm_sh_register_widgets() {
+	global $zm_sh;
+	if(isset($zm_sh->excluded) and $zm_sh->excluded == true) return;
+	register_widget( 'zm_html_share_widget' );
+}
+
+
+
 class zm_html_share_widget extends WP_Widget {
 	
 	function __construct() {
@@ -32,19 +45,24 @@ class zm_html_share_widget extends WP_Widget {
 
 	function form( $instance ) {
 		global $zm_sh_default_options;
+		//print_r($instance);
+		if(empty($instance))
+			$instance = $zm_sh_default_options;
+		//print_r($instance);
 		$zm_form	= new zm_form;
 		//$instance	= !empty($instance) ? $instance : $zm_sh_default_options;
-		//print_r($instance);
+		//print_r($zm_form->iconsets);
 		?>
 		<div class="wrap">
 				<?php settings_fields( 'zm_shbt_opt' ); ?>
                 <h3>Select theme and Icon Style</h3>
                 <?php $zm_form->text($this->get_field_id( 'title' ), "Enter a Title", $this->get_field_name( 'title' ), $instance['title']);?>
 				
-                <?php $zm_form->select_iconset($this->get_field_id("iconset"), "Select Button Style", $this->get_field_name( 'iconset' ), $instance['iconset']);?>
-                <?php $zm_form->dropdown($this->get_field_id("iconset_type"), "Select Type", zm_sh_get_iconset_types($instance['iconset']), $this->get_field_name( 'iconset_type' ), $instance['iconset_type']);?>
+                <?php $zm_form->select_iconset($this->get_field_id("iconset"), "Select Button Style", $this->get_field_name( 'iconset' ), $instance['iconset'] );?>
                 
-                <?php $zm_form->icon_fields_widget($this->get_field_id("icons"), $this->get_field_name( 'icons' ), $instance['icons'], "Select Buttons", "Enable");?>
+                <?php $zm_form->dropdown($this->get_field_id("iconset_type"), "Select Type", $zm_form->iconsets->get_iconset($instance['iconset'])->types, $this->get_field_name( 'iconset_type' ), $instance['iconset_type']);?>
+                
+                <?php $zm_form->icon_fields_widget($this->get_field_id("icons"), $this->get_field_name( 'icons' ), $instance['icons'], "Select Buttons", "Enable", $instance['iconset']);?>
                 
         </div>
 		<?php

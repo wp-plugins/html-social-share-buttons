@@ -1,9 +1,16 @@
 <?php
-new zm_sh_settings;
+
+add_action('init', function(){
+	if(is_admin())
+		new zm_sh_settings;
+}, 20);
+
 class zm_sh_settings{
 	private $options;
 	function __construct(){
-		global $zm_sh_default_options;
+		global $zm_sh, $zm_sh_default_options;
+		$this->zm_sh	= &$zm_sh;
+		$this->iconsets	= &$zm_sh->iconsets;
 		$this->options = get_option("zm_shbt_fld", $zm_sh_default_options);
 		//adding menu item and page on admin
 		add_action('admin_menu', array($this,'reg_admn_menu'));
@@ -22,7 +29,7 @@ class zm_sh_settings{
 	function admin_scripts($hook) {
 		if ( 'toplevel_page_zm_shbt_opt' == $hook ) {
 			wp_enqueue_style( 'zm_sh_admin_styles',  plugin_dir_url( __FILE__ ) . 'assets/admin.css' );
-			wp_enqueue_script('zm_sh_admin_scripts', plugin_dir_url( __FILE__ ) . 'assets/admin.js'  );
+			wp_enqueue_script('zm_sh_admin_scripts', plugin_dir_url( __FILE__ ) . 'assets/admin.js', false, false, true  );
 			wp_localize_script( 'zm_sh_admin_scripts', 'zm_sh_root_url',		zm_sh_url );
 			wp_localize_script( 'zm_sh_admin_scripts', 'zm_sh_url_assets',		zm_sh_url_assets );
 			wp_localize_script( 'zm_sh_admin_scripts', 'zm_sh_url_assets_img',	zm_sh_url_assets_img );
@@ -54,6 +61,7 @@ class zm_sh_settings{
             <?php $zm_form->text("title", "Enter a Title");?>
             <?php $zm_form->textArea("excludes", "Exclude");?>
  			<?php $zm_form->checkbox('g_analytics', 'Google Social analytics', $name = '',null,'','','', "Be sure you have google analytics already in page" );?>
+ 			<?php $zm_form->checkbox('nofollow', 'No follow social link', $name = '',null,'','','', "This will make all social link nofollow." );?>
             <?php $zm_form->select_iconset("iconset", "Select Button Style");?>
             <?php $zm_form->show_on("show_left", "Show on Left Side");?>
             <?php $zm_form->show_on("show_right", "Show on Right Side");?>
@@ -63,65 +71,25 @@ class zm_sh_settings{
             <?php $zm_form->icon_fields("Select Buttons", "Enable");?>
             
             <?php submit_button(); ?>
-            <a href="#TB_inline?width=600&height=600&inlineId=zm-sh-thick-box" class="get_phpcode thickbox  button button-default" title="<?php _e("<\?> Get PHP Code", "zm-sh");?>"><?php _e("<\?> Get PHP Code", "zm-sh");?></a>
-            <a href="#TB_inline?width=600&height=600&inlineId=zm-sh-thick-box" class="get_shortcode thickbox button button-default" title="<?php _e("[] Get Shortcode", "zm-sh");?>"><?php _e("[] Get Shortcode", "zm-sh");?></a>
-            <script>
-
-			
-			jQuery(document).ready(function($) {
-                $('.get_shortcode,[name=shortcode-iconset-type]').on('click',function(e){
-					$iconset		= $("#iconset").val();
-					$iconset_type	= $("[name=shortcode-iconset-type]:checked").val();
-					$shortcode = "[zm_sh_btn ";
-					$shortcode += "iconset='" + $iconset + "' ";
-					$shortcode += "iconset_type='" + $iconset_type + "' ";
-					$shortcode += "icons='";
-					//e.preventDefault();
-					$icons = [];
-					$( ".zm_settings input[name^='zm_shbt_fld[icons]']:checked").each(function(index, element) {
-                        $icons.push( $(element).data("id"));
-                    });
-					$shortcode += $icons.join();
-					$shortcode += "']";
-					$("#copy_shortcode").html($shortcode);
-					$("#copy_shortcode").select();
-					//console.log($shortcode);
-				});
-                $('.get_phpcode,[name=shortcode-iconset-type]').on('click',function(e){
-					$iconset = $("#iconset").val();
-					$iconset_type	= $("[name=shortcode-iconset-type]:checked").val();
-					$phpcode = "\<\?php\n if(function_exists('zm_sh_opt')){\n\t";
-					$phpcode += "$options['iconset']		= '" + $iconset + "';\n\t";
-					$phpcode += "$options['iconset_type']	= '" + $iconset_type + "';\n\t";
-					$phpcode += "$options['class']			= 'in_php_function';\n\t";
-					$phpcode += "$options['icons']			= array( '";
-					$icons = [];
-					$( ".zm_settings input[name^='zm_shbt_fld[icons]']:checked").each(function(index, element) {
-                        $icons.push( $(element).data("id"));
-                    });
-					$phpcode += $icons.join("', '");
-					$phpcode += "' );\n";
-					$phpcode += "\techo zm_sh_btn($options);";
-					$phpcode += "\n}\n?>";
-					$("#copy_shortcode").html($phpcode);
-					$("#copy_shortcode").select();
-					//console.log($shortcode);
-				});
-            });
-			
-			</script>
+            <a id="get_php" href="#zm-sh-thick-box" class="get_phpcode button button-default" title="<?php _e("<\?> Get PHP Code", "zm-sh");?>"><?php _e("<\?> Get PHP Code", "zm-sh");?></a>
+            <a id="get_short" href="#zm-sh-thick-box" class="get_shortcode button button-default" title="<?php _e("[] Get Shortcode", "zm-sh");?>"><?php _e("[] Get Shortcode", "zm-sh");?></a>
+           
             <p class="desin_by">
             	Designed By Hakan Ertan <a target="_blank" href="https://www.tonicons.com/" rel="follow">www.tonicons.com</a>
             </p>
 			</form>
-            <?php add_thickbox(); ?>
-            <div id="zm-sh-thick-box" style="display:none;">
-            	<div class="tabs">
+            <div id="zm-sh-thick-box" class="zm-sh-thick-box">
+            	<div class="backdrop"></div>
+            	<div class="zm-tabs">
+                	<h3 class="title"></h3> 
+                	<span class="close">X</span>
                 	<div id="tab-1" class="tab">
                     <?php
-						$iconset = zm_sh_get_iconset($options['iconset']);
-                    	echo "<div class='row show_on' style='margin-top:20px;margin-bottom:50px'>";
-                            foreach($iconset['types'] as $type){
+						$iconset = $this->iconsets->get_iconset($options['iconset']);
+						//print_r($iconset->types);
+						$i = 0;
+                    	echo "<div class='row show_on code-type' style='margin-top:20px;margin-bottom:50px'>";
+                            foreach($iconset->types as $type){
 								$selected = "";
 								if($i==0)
 									$selected = "checked='checked'";
@@ -138,10 +106,69 @@ class zm_sh_settings{
                 </div>
             </div>
         </div>
+         <script>
+
+//////////////////////////////////////
+// Get shortcode an php code function
+//////////////////////////////////////
+			
+jQuery(document).ready(function($) {
+	var current_type;
+	$(document).on('click','.get_shortcode,[name=shortcode-iconset-type]',function(e){
+		console.log(this);
+		if($(this).attr('id') == 'get_short')
+			current_type	= 'get_short';
+		if(current_type	!= 'get_short')
+			return;
+		$iconset		= $("#iconset").val();
+		$iconset_type	= $("[name=shortcode-iconset-type]:checked").val();
+		$shortcode = "[zm_sh_btn ";
+		$shortcode += "iconset='" + $iconset + "' ";
+		$shortcode += "iconset_type='" + $iconset_type + "' ";
+		$shortcode += "icons='";
+		//e.preventDefault();
+		$icons = [];
+		$( ".zm_settings input[name^='zm_shbt_fld[icons]']:checked").each(function(index, element) {
+			$icons.push( $(element).data("id"));
+		});
+		$shortcode += $icons.join();
+		$shortcode += "']";
+		$("#copy_shortcode").html($shortcode);
+		$("#copy_shortcode").select();
+		//console.log($shortcode);
+	});
+	$(document).on('click', '.get_phpcode,[name=shortcode-iconset-type]', function(e){
+		console.log(this);
+		if($(this).attr('id') == 'get_php')
+			current_type	= 'get_php';
+		if(current_type	!= 'get_php')
+			return;
+		$iconset = $("#iconset").val();
+		$iconset_type	= $("[name=shortcode-iconset-type]:checked").val();
+		$phpcode = "\<\?php\n if(function_exists('zm_sh_btn')){\n\t";
+		$phpcode += "$options['iconset']		= '" + $iconset + "';\n\t";
+		$phpcode += "$options['iconset_type']	= '" + $iconset_type + "';\n\t";
+		$phpcode += "$options['class']			= 'in_php_function';\n\t";
+		$phpcode += "$options['icons']			= array( '";
+		$icons = [];
+		$( ".zm_settings input[name^='zm_shbt_fld[icons]']:checked").each(function(index, element) {
+			$icons.push( $(element).data("id"));
+		});
+		$phpcode += $icons.join("', '");
+		$phpcode += "' );\n";
+		$phpcode += "\techo zm_sh_btn($options);";
+		$phpcode += "\n}\n?>";
+		$("#copy_shortcode").html($phpcode);
+		$("#copy_shortcode").select();
+		//console.log($shortcode);
+	});
+});
+			
+			</script>
         <pre>
         <?php
 		//print_r($this->options);
-		//print_r(zm_sh_get_iconset($this->options['iconset']));
+		//print_r($this->iconsets->get_iconset($this->options['iconset']));
 		?>
         </pre>
         <?php
@@ -153,7 +180,7 @@ class zm_sh_settings{
 	
 	function sanitize( $input ){
         $new_input = array(); //get_option("zm_shbt_fld", $zm_sh_default_options);
-		$keep_as_is = array( "title", "excludes", "iconset", "icons", "show_in", "show_left", "show_right", "show_before_post", "show_after_post", );
+		$keep_as_is = array( "title", "iconset", "excludes", "icons", "show_in", "show_left", "show_right", "show_before_post", "show_after_post", );
 		
 		foreach($input as $key =>$value){
 			if( $key == "show_in")

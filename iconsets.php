@@ -1,38 +1,48 @@
 <?php
 
-
 class zm_sh_iconset{
-	public $iconset;
-	public $iconsets;
-	public $options;
-	public $curr_iconset;
+	public	$options;
+	private	$iconsets;
+	private	$iconsetId;
+	private	$curr_iconset;
 	
-	static function getInstance() {
-		static $instance;
-		if ($instance === null){
-			$instance = new self;
-			do_action( "zm_sh_add_iconset");
-			add_action( 'wp_ajax_get_iconset', 'wp_ajax_get_iconset' );
-			add_action( 'wp_ajax_get_iconset_preview', 'wp_ajax_get_iconset_preview' );
-		}
-		return $instance;
+	function __get($var){
+		if($var == 'curr_iconset')
+			return $this->get_current_iconset();
+		if($var == 'private')
+			return $this->get_current_iconset();
+		elseif(isset($this->iconsets->$var))
+			return $this->iconsets->$var;
 	}
 	
-	protected function __construct(){
-		global $zm_sh_default_options;
+	function __construct(){
+		global $zm_sh, $zm_sh_default_options;
+		global $zm_sh_iconset_classes;
+		$this->iconsets	= new stdClass;
+		//var_dump($this->iconsets);
 		$this->options = get_option("zm_shbt_fld", $zm_sh_default_options);
+		//print_r($zm_sh_iconset_classes);
+		foreach($zm_sh_iconset_classes as $iconset)
+			$this->add_iconset(new $iconset);
+		do_action( "zm_sh_add_iconset");
+		add_action( 'wp_ajax_get_iconset', array($this, 'wp_ajax_get_iconset') );
+		add_action( 'wp_ajax_get_iconset_preview', array($this, 'wp_ajax_get_iconset_preview') );
 	}
 	
 	function add_iconset($iconset){
-		$id = $iconset['id'];
-		$this->iconsets[$id] = $iconset;
-		return $this->iconsets;
+		$id = $iconset->id;
+		if(empty($id)) return;
+		$this->iconsets->$id = $iconset;
+		$class	= get_class($iconset);
+		if(isset($zm_sh_iconset_classes[$class]))
+			unset($zm_sh_iconset_classes[$class]);
+		return $this->iconsets->$id;
 	}
 	
 	function get_current_iconset(){
-		$iconset = $this->curr_iconset?$this->curr_iconset:$this->options['iconset'];
-		$this->iconset = $this->get_iconset($iconset);
-		return $this->iconset;
+		$this->iconsetId = $this->options['iconset'];
+		$this->curr_iconset = $this->get_iconset($this->iconsetId);
+		return $this->curr_iconset;
 	}
 	
 	function set_current_iconset($iconset_name){
@@ -40,104 +50,131 @@ class zm_sh_iconset{
 		return true;
 	}
 	
-	function get_iconset($iconset = "default"){
-		$this->curr_iconset = $iconset;
-		return $this->iconsets[$iconset];
-	}
-	
-	function get_iconset_types($iconset = "default"){
-		$this->curr_iconset = $iconset;
-		return $this->iconsets[$iconset]['types'];
+	function get_iconset($iconset = "default", $setAsCurrent = false){
+		//print_r(debug_backtrace());
+		//if(empty($iconset)) return false;
+		//echo '"><pre>';
+		//print_r(debug_backtrace ());
+		if($setAsCurrent)
+			$this->curr_iconset = $this->iconsets->$iconset;
+		if(isset($this->iconsets->$iconset))
+			return $this->iconsets->$iconset;
+		else
+			return  $this->iconsets->default;
 	}
 	
 	function get_iconsets(){
 		return $this->iconsets;
 	}
+	
 	function get_iconset_list(){
 		$iocnsets = array();
 		foreach($this->iconsets as $iconset){
-			$id = $iconset['id'];
-			$iocnsets[$id] = $iconset['name'];
+			$id = $iconset->id;
+			$iocnsets[$id] = $iconset->name;
 		}
 		return $iocnsets;
 	}
 	
 	public function remove_iconset($id){
-		unset($this->iconsets[$id]);
+		unset($this->iconsets->$id);
 		return $id;
 	}
 	
-	public function get_iconset_preview($iconset = 'default'){
-		$iconset	= $this->get_iconset($iconset);
-		return $iconset['url'].$iconset['preview_img'];
+	
+	function wp_ajax_get_iconset_preview(){
+		$iconset_id	= $_POST['iconsetId'];
+		$preview	= $this->get_iconset($iconset_id)->get_iconset_preview();
+		echo $preview;
+		die();
+	}
+	
+	function wp_ajax_get_iconset(){
+		$iconset_id	= $_POST['iconsetId'];
+		$iconset	= $this->get_iconset($iconset_id);
+		echo json_encode($iconset);
+		die();
 	}
 	
 }
 
-function zm_sh_get_iconset_list(){
-	$obj_iconset = zm_sh_iconset::getInstance();
-	return $obj_iconset->get_iconset_list();
-}
 
-function zm_sh_get_current_iconset(){
-	$obj_iconset = zm_sh_iconset::getInstance();
-	return $obj_iconset->get_current_iconset();
-}
-function zm_sh_set_current_iconset($iconset_name){
-	$obj_iconset = zm_sh_iconset::getInstance();
-	return $obj_iconset->set_current_iconset($iconset_name);
-}
-
-function zm_sh_get_iconset_types($iconset_name=""){
-	$iconset_name = $iconset_name?$iconset_name:"default";
-	$obj_iconset = zm_sh_iconset::getInstance();
-	return $obj_iconset->get_iconset_types($iconset_name);
-}
-function zm_sh_get_iconset($iconset = "default"){
-	$obj_iconset = zm_sh_iconset::getInstance();
-	return $obj_iconset->get_iconset($iconset);
-}
-
-function zm_sh_get_icons($iconset = "default"){
-	$obj_iconset = zm_sh_iconset::getInstance();
-	$icons = array();
-	$iconset = $obj_iconset->get_iconset($iconset);
-	foreach($iconset['icons'] as $icon){
-		$icons[$icon['name']] = $icon['id'];
+abstract class __iconset_parent_class implements interface_iconset{
+	public		$__FILE__;
+	public		$id;
+	public		$name;
+	public		$types;
+	public		$icons;
+	public		$inTheme	= false;
+	
+	public		$stylesheet		= "style.css";
+	public		$preview_img	= "preview.png";
+	
+	function __construct(){
+		$this->set_dir_and_url($this->__FILE__);
+		
 	}
-	return $icons;
+	
+	
+	function set_dir_and_url($__FILE__){
+		if(isset($this->inTheme) and $this->inTheme){
+			$this->dir				= get_template_directory(). $this->inTheme;
+			$this->url				= get_template_directory_uri(). $this->inTheme;
+		}
+		elseif(isset($this->inChildTheme) and $this->inChildTheme){
+			$this->dir				= get_stylesheet_directory(). $this->inChildTheme;
+			$this->url				= get_stylesheet_directory_uri(). $this->inChildTheme;
+		}
+		else{
+			$this->dir				= plugin_dir_path( $__FILE__ );
+			$this->url				= plugins_url( "/", $__FILE__ );
+		}
+		$this->stylesheet_url	= $this->url . $this->stylesheet;
+		$this->preview_img_url	= $this->url . $this->preview_img;
+		$this->preview_img_dir	= $this->dir . $this->preview_img;
+	}
+	
+	public function get_icons(){
+		return $this->icons;
+	}
+	
+	public function get_icons_id_name(){
+		$new	= array();
+		foreach( $this->icons as $id=>$icon)
+			$new[$id]	= $icon['name'];
+		return $new;
+	}
+	
+	public function push_icon($icon){
+		$this->icons[]	= $icon;
+	}
+	public function get_iconset_preview(){
+		return $this->url . $this->preview_img;
+	}
+	
+	
 }
 
-function zm_sh_get_iconsets(){
-	$obj_iconset = zm_sh_iconset::getInstance();
-	return $obj_iconset->get_iconsets();
+// Searching for iconsets
+// This will search for ssb.php if found then includ that.
+$dir = scandir($dir_iconset);
+foreach ($dir as $subdir) {
+	if ($subdir === '.' or $subdir === '..') continue;
+	$iconset_file = $dir_iconset . '/' . $subdir . "/ssb.php";
+	if (file_exists($iconset_file)) {
+		require_once $iconset_file;
+		$class_name	= 'zm_sh_iconset_' . $subdir;
+		if(class_exists($class_name))
+			$zm_sh_iconset_classes[$class_name]	= $class_name;
+	}
 }
 
-function zm_sh_add_iconset($iconset){
-	$obj_iconset = zm_sh_iconset::getInstance();
-	return $obj_iconset->add_iconset($iconset);
-}
 
-function zm_sh_remove_iconset($id){
-	$obj_iconset = zm_sh_iconset::getInstance();
-	return $obj_iconset->remove_iconset($id);
-}
+add_action( 'wp_ajax_get_iconset_details', 'wp_ajax_get_iconset_details' );
 
-function zm_get_iconset_preview($iconset = 'default'){
-	$obj_iconset = zm_sh_iconset::getInstance();
-	return $obj_iconset->get_iconset_preview($iconset);
-}
-
-function wp_ajax_get_iconset_preview(){
-	$iconset_id	= $_POST['iconsetId'];
-	$preview	= zm_get_iconset_preview($iconset_id);
-	echo $preview;
-	die();
-}
-
-function wp_ajax_get_iconset(){
-	$iconset_id	= $_POST['iconsetId'];
-	$iconset	= zm_sh_get_iconset($iconset_id);
-	echo json_encode($iconset);
+function wp_ajax_get_iconset_details() {
+	$iconset_class	= new zm_sh_iconset;
+	$iconset = $iconset_class->get_iconset($_POST['iconset']);
+	echo json_encode($iconset->get_icons_id_name());
 	die();
 }
