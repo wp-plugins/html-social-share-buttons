@@ -54,6 +54,7 @@ include("iconsets.php");
 //it's contain filters
 include("filters.php");
 
+require_once("function.php");
 //include widget.php
 //it's register widget
 include("widget.php");
@@ -294,7 +295,7 @@ class zm_social_share{
 				if(!array_key_exists($id, (array)$selected_icons) and !in_array($id, (array)$selected_icons)) continue;
 				$this->printed_icons[$iconset->id."_$iconset_type\0_".$id] = $icon;
 				$url= apply_filters("zm_sh_placeholder", $url);
-				$output .= "<a class='$class'	target='_blank' href='$url'></a>\n";
+				$output .= "<a class='$class' target='_blank' href='$url'></a>\n";
 			}
         $output .= "</div>";
 		return $output;

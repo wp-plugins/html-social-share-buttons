@@ -5,6 +5,7 @@ class zm_sh_filters{
 	
 	function __construct(){
 		add_filter("zm_sh_placeholder", array($this, "zm_sh_placeholder"));
+		add_filter("zm_sh_ico_link", array($this, "ico_link"));
 	}
 	
 	function zm_sh_placeholder($item){
@@ -17,6 +18,12 @@ class zm_sh_filters{
 		$item 			= str_replace( "%%description%%",	urlencode($description),	$item);
 		$item 			= str_replace( "%%imageurl%%",		urlencode($image_url),		$item);
 		return $item;
+	}
+	
+	function ico_link($ico_link){
+		
+		
+		return $ico_link;
 	}
 	
 	function image_url($url) {
