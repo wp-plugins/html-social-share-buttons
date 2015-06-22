@@ -53,7 +53,7 @@ class zm_html_share_widget extends WP_Widget {
 		//$instance	= !empty($instance) ? $instance : $zm_sh_default_options;
 		//print_r($zm_form->iconsets);
 		?>
-		<div class="wrap">
+		<div class="wrap HSSWidget">
 				<?php settings_fields( 'zm_shbt_opt' ); ?>
                 <h3>Select theme and Icon Style</h3>
                 <?php $zm_form->text($this->get_field_id( 'title' ), "Enter a Title", $this->get_field_name( 'title' ), $instance['title']);?>

@@ -106,7 +106,10 @@ class zm_form{
 			$_id	= $icon['id'];
 			$_name	= $icon['name'];
 			//echo $_id. '||' .$selected_icons[$_id]."\n";
-			$chk	= checked($selected_icons[$_id], true, false);
+			if(isset($selected_icons[$_id]))
+				$chk	= checked($selected_icons[$_id], true, false);
+			else
+				$chk	= false;
 			$this->checkbox($id.'_'.$_id, $label_prefix.' '.$_name, $name . "[$_id]", $chk);
 		}
 	}
