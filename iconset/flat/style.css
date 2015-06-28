@@ -1,0 +1,55 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+.zmshbt.flat{
+	
+}
+.zmshbt.flat.left, .zmshbt.flat.right{
+	top: 30%;
+	z-index:9999;
+	position: fixed;
+	
+	-moz-transition: all .25s linear .5s;
+	-webkit-transition: all .25s linear .5s;
+	transition: all .25s linear .5s;
+	
+}
+
+.zmshbt.flat.left {
+	left: -25px;
+}
+.zmshbt.flat.left:hover {
+	left: 0;
+}
+.zmshbt.flat.right {
+	right: -25px;
+}
+.zmshbt.flat.right:hover {
+	right: 0;
+}
+
+.zmshbt.flat.in_widget a,.zmshbt.flat.in_shortcode a{
+	display:inline-block;
+	margin: 5px;
+}
+.zmshbt.flat a {
+	width: 32px;
+	height: 32px;
+	display: block;
+	background-size:cover;
+	margin: 10px;
+	
+	-moz-transition: all .25s linear;
+	-webkit-transition: all .25s linear;
+	transition: all .25s linear;
+}
+
+.zmshbt.flat a:hover, .zmshbt.flat a:active{
+	-moz-transform: scale(1.5);
+	-ms-transform: scale(1.5);
+	-o-transform: scale(1.5);
+	-webkit-transform: scale(1.5);
+	transform: scale(1.5)
+}
