@@ -84,7 +84,7 @@ class zm_sh_metabox {
 		/* OK, its safe for us to save the data now. */
 
 		// Sanitize the user input.
-		$mydata = sanitize_text_field( $_POST['_zm_sh_disable_share'] );
+		$mydata = isset($_POST['_zm_sh_disable_share'])?sanitize_text_field( $_POST['_zm_sh_disable_share'] ):false;
 		// Update the meta field.
 		update_post_meta( $post_id, '_zm_sh_disable_share', $mydata );
 	}
