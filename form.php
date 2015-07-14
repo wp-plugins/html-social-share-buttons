@@ -37,13 +37,13 @@ class zm_form{
 		$chk = $selected===null?checked($saved_val, true, false):$selected;
 		$name = $name ? $name : "zm_shbt_fld[$id]";
 		echo "<div class='row'>";
-			echo "<label for='$id_prefix$id'>$label</label>";
+			echo "<label for='$id_prefix$id' title='$description'>$label</label>";
 			echo "<input name='$name' id='$id_prefix$id' $chk type='checkbox' value='1' data-id='$id' />";
 			echo "<span class='for_label'>";
 				echo "<label for='$id_prefix$id' class='$class' data-on='$yes' data-off='$no'></label>";
 			echo "</span>";
 		echo "</div>";
-			if($description)
+		if($description)
 			echo "<p>$description</p>";
 	}
 	

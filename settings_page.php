@@ -60,8 +60,9 @@ class zm_sh_settings{
             <h3>Select theme and Icon Style</h3>
             <?php $zm_form->text("title", "Enter a Title");?>
             <?php $zm_form->textArea("excludes", "Exclude");?>
- 			<?php $zm_form->checkbox('g_analytics', 'Google Social analytics', $name = '',null,'','','', "Be sure you have google analytics already in page" );?>
- 			<?php $zm_form->checkbox('nofollow', 'No follow social link', $name = '',null,'','','', "This will make all social link nofollow." );?>
+ 			<?php $zm_form->checkbox('g_analytics', 'Google Social analytics', $name = '',null,'','','','', "Be sure you have google analytics already in page" );?>
+ 			<?php $zm_form->checkbox('use_port', 'Use port on the url.', $name = '',null,'','','','', "Ex. ssl port :443" );?>
+ 			<?php $zm_form->checkbox('nofollow', 'No follow social link', $name = '',null,'','','','', "This will make all social link nofollow." );?>
             <?php $zm_form->select_iconset("iconset", "Select Button Style");?>
             <?php $zm_form->show_on("show_left", "Show on Left Side");?>
             <?php $zm_form->show_on("show_right", "Show on Right Side");?>

@@ -4,7 +4,7 @@ Plugin Name: Html Social share buttons
 Plugin URI: http://wordpress.org/plugins/html-social-share-buttons/
 Description: Html share button. It show lite share button only with html. It's not using any javascript whats anothers do. It's load only extra 10-11 kb total on your site.
 Author: Alimuzzaman Alim
-Version: 2.1.5.1
+Version: 2.1.6
 Author URI: http://www.zm-tech.net
 Text Domain: zm-sh
 Domain Path: /languages
@@ -24,6 +24,7 @@ $dir_iconset = plugin_dir_path(__FILE__) . "iconset";
 $zm_sh_default_options = array(
 						"title"				=> "Share this with your friends",
 						"iconset"			=> "default",
+						"use_port"			=> false,
 						
 						"show_left"			=> true,
 						"show_right"		=> false,
@@ -307,21 +308,20 @@ class zm_social_share{
 	}
 	
 	
-	
-	function curentPageURL() {
-		return zm_sh_curentPageURL();
-	}
 }
 
+
+	
 function zm_sh_curentPageURL() {
+	global $zm_sh_default_options;
+	$options = get_option("zm_shbt_fld", $zm_sh_default_options);
 	$pageURL = 'http';
 	if(isset($_SERVER["HTTPS"])) if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
 		$pageURL .= "://";
-	if ($_SERVER["SERVER_PORT"] != "80") {
+	if (($_SERVER["SERVER_PORT"] != "80" and $_SERVER["SERVER_PORT"] != "443" ) or (isset($options['use_port']) and $options['use_port'])){
 		$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
 	} else {
 		$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
 	}
 	return $pageURL;
 }
-
