@@ -1,0 +1,56 @@
+@charset "utf-8";
+/* CSS Document */
+
+.zmshbt.Prajin{
+	
+}
+.zmshbt.Prajin.left, .zmshbt.Prajin.right{
+	z-index:9999;
+	position: fixed;
+	top: 30%;
+}
+.zmshbt.Prajin.left {
+	left:0;
+	display: block;
+}
+.zmshbt.Prajin.left:hover {
+	left:0;
+}
+.zmshbt.Prajin.right {
+	right: -25px;
+}
+.zmshbt.Prajin.right:hover {
+	right: 0;
+}
+.zmshbt.Prajin.left a {
+	margin-left: -10px;
+}
+.zmshbt.Prajin.left a:hover {
+	margin-left: 5px;
+}
+.zmshbt.Prajin.in_widget a{
+	display:inline-block;
+	margin: 5px;
+}
+.zmshbt.Prajin a {
+	width: 41px;
+	height: 32px;
+	display: block;
+	background-size:cover;
+	margin: 5px 5px 5px 0px;
+	
+	-moz-transition: all .25s linear;
+	-webkit-transition: all .25s linear;
+	transition: all .25s linear;
+}
+.zmshbt.Prajin.circle a {
+	height: 41px;
+}
+.zmshbt.Prajin a:hover, .zmshbt.Prajin a:active {
+	-moz-transform: scale(1.5);
+	-ms-transform: scale(1.5);
+	-o-transform: scale(1.5);
+	-webkit-transform: scale(1.5);
+	transform: scale(1.5)
+}
+
